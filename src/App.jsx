@@ -170,6 +170,8 @@ const contactInfo = {
   linkedin: 'https://linked.com/neanderdevil/'
 }
 
+const web3FormsAccessKey = '02b17a67-ee5c-41b5-ba19-eb527dcd28cb'
+
 function ProfilePhoto() {
   const [hasPhoto, setHasPhoto] = useState(true)
 
@@ -201,6 +203,42 @@ function ProfilePhoto() {
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [formStatus, setFormStatus] = useState({ type: 'idle', message: '' })
+
+  async function handleContactSubmit(event) {
+    event.preventDefault()
+    const form = event.currentTarget
+    const formData = new FormData(form)
+
+    setFormStatus({ type: 'loading', message: 'Sending your message...' })
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      })
+      const result = await response.json()
+
+      if (result.success) {
+        form.reset()
+        setFormStatus({
+          type: 'success',
+          message: 'Thanks. Your message was sent successfully.'
+        })
+        return
+      }
+
+      setFormStatus({
+        type: 'error',
+        message: result.message || 'Something went wrong. Please email me directly.'
+      })
+    } catch {
+      setFormStatus({
+        type: 'error',
+        message: 'Message could not be sent. Please email me directly.'
+      })
+    }
+  }
 
   return (
     <div className="min-h-screen bg-cloud text-ink">
@@ -553,15 +591,19 @@ function App() {
               </div>
             </div>
 
-            <form className="rounded border border-line bg-cloud p-5 shadow-sm sm:p-6">
+            <form onSubmit={handleContactSubmit} className="rounded border border-line bg-cloud p-5 shadow-sm sm:p-6">
+              <input type="hidden" name="access_key" value={web3FormsAccessKey} />
+              <input type="hidden" name="subject" value="New message from Neander Devil portfolio website" />
+              <input type="hidden" name="from_name" value="Neander Devil Portfolio" />
+              <input type="checkbox" name="botcheck" className="hidden" tabIndex="-1" autoComplete="off" />
               <div className="grid gap-4 sm:grid-cols-2">
                 <label className="grid gap-2 text-sm font-bold">
                   Name
-                  <input className="focus-ring rounded border border-line bg-white px-4 py-3 font-normal text-ink" name="name" type="text" autoComplete="name" />
+                  <input className="focus-ring rounded border border-line bg-white px-4 py-3 font-normal text-ink" name="name" type="text" autoComplete="name" required />
                 </label>
                 <label className="grid gap-2 text-sm font-bold">
                   Email
-                  <input className="focus-ring rounded border border-line bg-white px-4 py-3 font-normal text-ink" name="email" type="email" autoComplete="email" />
+                  <input className="focus-ring rounded border border-line bg-white px-4 py-3 font-normal text-ink" name="email" type="email" autoComplete="email" required />
                 </label>
                 <label className="grid gap-2 text-sm font-bold">
                   Phone
@@ -585,14 +627,30 @@ function App() {
                   <textarea
                     className="focus-ring min-h-36 rounded border border-line bg-white px-4 py-3 font-normal text-ink"
                     name="message"
+                    required
                   />
                 </label>
               </div>
+              {formStatus.message && (
+                <p
+                  className={`mt-4 rounded border px-4 py-3 text-sm font-bold ${
+                    formStatus.type === 'success'
+                      ? 'border-emerald-200 bg-emerald-50 text-emerald-800'
+                      : formStatus.type === 'error'
+                        ? 'border-red-200 bg-red-50 text-red-800'
+                        : 'border-line bg-white text-steel'
+                  }`}
+                  role="status"
+                >
+                  {formStatus.message}
+                </p>
+              )}
               <button
                 type="submit"
+                disabled={formStatus.type === 'loading'}
                 className="focus-ring mt-5 inline-flex w-full items-center justify-center gap-2 rounded bg-electric px-5 py-3 text-sm font-black text-white transition hover:bg-blue-500 sm:w-auto"
               >
-                Send Message
+                {formStatus.type === 'loading' ? 'Sending...' : 'Send Message'}
                 <ArrowRight size={18} />
               </button>
             </form>
