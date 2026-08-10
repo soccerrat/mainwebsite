@@ -67,6 +67,28 @@ const quickView = [
   }
 ]
 
+const heroSignals = [
+  'CompTIA A+',
+  'Security+',
+  'Cybersecurity graduate background',
+  'Open to full-time roles'
+]
+
+const proofPoints = [
+  {
+    label: 'Role focus',
+    value: 'Cybersecurity / IT support'
+  },
+  {
+    label: 'Work style',
+    value: 'Clear docs, patient support'
+  },
+  {
+    label: 'Also available',
+    value: 'Local tech support'
+  }
+]
+
 const credentials = [
   'CompTIA A+',
   'CompTIA Security+',
@@ -176,14 +198,16 @@ function ProfilePhoto() {
   const [hasPhoto, setHasPhoto] = useState(true)
 
   return (
-    <div className="rounded border border-white/12 bg-white/8 p-4 shadow-soft backdrop-blur">
+    <div className="reveal-in reveal-delay-2 relative mx-auto w-full max-w-md">
+      <div className="absolute -left-4 top-8 hidden h-28 w-2 rounded bg-electric shadow-electric sm:block" />
+      <div className="rounded border border-white/12 bg-white/8 p-4 shadow-electric backdrop-blur">
       <div className="relative overflow-hidden rounded border border-white/10 bg-navy">
         {hasPhoto ? (
           <img
             src="/profile-photo.jpg"
             alt="Neander Devil"
             onError={() => setHasPhoto(false)}
-            className="aspect-[4/5] w-full object-cover"
+            className="aspect-[4/5] w-full object-cover object-[50%_18%]"
           />
         ) : (
           <div className="grid aspect-[4/5] w-full place-items-center bg-[linear-gradient(135deg,#0b1b33,#102a4f)]">
@@ -193,9 +217,17 @@ function ProfilePhoto() {
           </div>
         )}
         <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy via-navy/70 to-transparent p-5">
-          <p className="text-sm font-semibold text-slate-300">Available for full-time roles</p>
-          <p className="mt-1 text-2xl font-black text-white">Cybersecurity & IT</p>
+          <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-electric">Candidate signal</p>
+          <p className="mt-1 font-display text-2xl font-black text-white">Cybersecurity & IT</p>
         </div>
+      </div>
+      <div className="mt-4 grid grid-cols-2 gap-3">
+        {['Security-minded', 'Support-ready'].map((item) => (
+          <div key={item} className="rounded border border-white/10 bg-white/8 px-3 py-2 text-center text-xs font-bold text-slate-100">
+            {item}
+          </div>
+        ))}
+      </div>
       </div>
     </div>
   )
@@ -296,11 +328,15 @@ function App() {
 
       <main id="top">
         <section className="relative overflow-hidden bg-navy text-white">
+          <div className="signal-grid absolute inset-0 opacity-80" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(31,143,255,0.24),transparent_32%),linear-gradient(135deg,rgba(255,255,255,0.07),transparent_38%)]" />
           <div className="section-shell relative grid min-h-[calc(100vh-4rem)] items-center gap-12 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:py-20">
-            <div className="max-w-3xl">
+            <div className="reveal-in max-w-3xl">
               <p className="eyebrow">Seeking full-time cybersecurity and IT opportunities</p>
-              <h1 className="mt-5 max-w-4xl text-4xl font-black leading-[1.05] sm:text-5xl lg:text-6xl">
+              <p className="mt-5 font-mono text-sm font-bold uppercase tracking-[0.14em] text-slate-300">
+                Neander Devil
+              </p>
+              <h1 className="mt-3 max-w-4xl font-display text-4xl font-black leading-[1.02] sm:text-5xl lg:text-6xl">
                 Cybersecurity & IT Professional
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200">
@@ -331,9 +367,26 @@ function App() {
                   Request IT Support
                 </a>
               </div>
+              <div className="mt-8 flex flex-wrap gap-2">
+                {heroSignals.map((signal) => (
+                  <span key={signal} className="rounded border border-white/15 bg-white/10 px-3 py-2 font-mono text-xs font-bold uppercase tracking-[0.12em] text-slate-100">
+                    {signal}
+                  </span>
+                ))}
+              </div>
             </div>
 
             <ProfilePhoto />
+          </div>
+          <div className="section-shell relative pb-8">
+            <div className="grid gap-3 border-t border-white/10 pt-5 sm:grid-cols-3">
+              {proofPoints.map((point) => (
+                <div key={point.label} className="rounded border border-white/10 bg-white/8 p-4 backdrop-blur">
+                  <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-electric">{point.label}</p>
+                  <p className="mt-2 text-sm font-bold text-white">{point.value}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -342,7 +395,7 @@ function App() {
             <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
               <div>
                 <p className="eyebrow">Currently Seeking</p>
-                <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">Ready for the next full-time role</h2>
+                <h2 className="mt-3 font-display text-3xl font-black tracking-tight sm:text-4xl">Ready for the next full-time role</h2>
                 <p className="mt-5 text-lg leading-8 text-steel">
                   I am currently seeking a full-time opportunity in cybersecurity, IT support,
                   technical support, security operations, or related technology roles. I am especially
@@ -352,7 +405,7 @@ function App() {
               </div>
               <div className="grid gap-3 sm:grid-cols-2">
                 {targetRoles.map((role) => (
-                  <div key={role} className="flex items-center gap-3 rounded border border-line bg-cloud p-4 shadow-sm">
+                  <div key={role} className="card-lift flex items-center gap-3 rounded border border-line bg-cloud p-4 shadow-sm">
                     <CheckCircle2 className="shrink-0 text-electric" size={20} />
                     <span className="font-bold">{role}</span>
                   </div>
@@ -366,12 +419,12 @@ function App() {
           <div className="section-shell">
             <div className="max-w-2xl">
               <p className="eyebrow">Recruiter Quick View</p>
-              <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">The fast scan for hiring teams</h2>
+              <h2 className="mt-3 font-display text-3xl font-black tracking-tight sm:text-4xl">The fast scan for hiring teams</h2>
             </div>
             <div className="mt-10 grid gap-4 lg:grid-cols-5">
               {quickView.map((item) => (
-                <article key={item.label} className="rounded border border-line bg-white p-5 shadow-sm">
-                  <p className="text-sm font-black uppercase tracking-[0.12em] text-electric">{item.label}</p>
+                <article key={item.label} className="card-lift rounded border border-line bg-white p-5 shadow-sm">
+                  <p className="font-mono text-xs font-black uppercase tracking-[0.12em] text-electric">{item.label}</p>
                   <p className="mt-3 text-sm leading-6 text-steel">{item.value}</p>
                 </article>
               ))}
@@ -385,7 +438,7 @@ function App() {
               <div className="grid h-16 w-16 place-items-center rounded bg-navy text-white">
                 <UserRound size={31} />
               </div>
-              <h2 className="mt-6 text-3xl font-black tracking-tight">Neander Devil</h2>
+              <h2 className="mt-6 font-display text-3xl font-black tracking-tight">Neander Devil</h2>
               <p className="mt-2 font-semibold text-electric">Cybersecurity & IT Professional</p>
               <div className="mt-6 grid gap-3 text-sm text-steel">
                 <p className="flex items-center gap-3">
@@ -401,7 +454,7 @@ function App() {
 
             <div>
               <p className="eyebrow">Professional Summary</p>
-              <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">Security-minded support with clear communication</h2>
+              <h2 className="mt-3 font-display text-3xl font-black tracking-tight sm:text-4xl">Security-minded support with clear communication</h2>
               <p className="mt-5 text-lg leading-8 text-steel">
                 Neander Devil is a cybersecurity and IT professional with CompTIA A+ and
                 Security+ certifications, a cybersecurity graduate background, and hands-on experience
@@ -423,7 +476,7 @@ function App() {
             <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
               <div>
                 <p className="eyebrow">Resume & Credentials</p>
-                <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">
+                <h2 className="mt-3 font-display text-3xl font-black tracking-tight sm:text-4xl">
                   Certified, prepared, and ready to contribute
                 </h2>
                 <p className="mt-4 leading-7 text-slate-200">
@@ -504,11 +557,11 @@ function App() {
           <div className="section-shell">
             <div className="max-w-2xl">
               <p className="eyebrow">Skills</p>
-              <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">Practical technical strengths</h2>
+              <h2 className="mt-3 font-display text-3xl font-black tracking-tight sm:text-4xl">Practical technical strengths</h2>
             </div>
             <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {skills.map((skill) => (
-                <div key={skill} className="flex items-center gap-3 rounded border border-line bg-white p-4 shadow-sm">
+                <div key={skill} className="card-lift flex items-center gap-3 rounded border border-line bg-white p-4 shadow-sm">
                   <Award className="shrink-0 text-electric" size={20} />
                   <span className="font-bold">{skill}</span>
                 </div>
@@ -521,13 +574,13 @@ function App() {
           <div className="section-shell">
             <div className="max-w-2xl">
               <p className="eyebrow">Experience / Projects</p>
-              <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">Hands-on problem solving</h2>
+              <h2 className="mt-3 font-display text-3xl font-black tracking-tight sm:text-4xl">Hands-on problem solving</h2>
             </div>
             <div className="mt-10 grid gap-4 lg:grid-cols-3">
               {projects.map((project) => (
-                <article key={project.title} className="rounded border border-line bg-cloud p-6 shadow-sm">
+                <article key={project.title} className="card-lift rounded border border-line bg-cloud p-6 shadow-sm">
                   <ClipboardList className="text-electric" size={28} />
-                  <h3 className="mt-5 text-xl font-black">{project.title}</h3>
+                  <h3 className="mt-5 font-display text-xl font-black">{project.title}</h3>
                   <p className="mt-3 text-sm leading-6 text-steel">{project.text}</p>
                 </article>
               ))}
@@ -539,7 +592,7 @@ function App() {
           <div className="section-shell">
             <div className="max-w-3xl">
               <p className="eyebrow">Services</p>
-              <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">Independent IT & Cybersecurity Support</h2>
+              <h2 className="mt-3 font-display text-3xl font-black tracking-tight sm:text-4xl">Independent IT & Cybersecurity Support</h2>
               <p className="mt-4 text-base leading-7 text-steel">
                 In addition to my professional career goals, I also provide practical technology
                 support for individuals, small businesses, churches, nonprofits, and local organizations.
@@ -552,12 +605,12 @@ function App() {
                 return (
                   <article
                     key={service.title}
-                    className="group rounded border border-line bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-electric/40 hover:shadow-soft"
+                    className="card-lift group rounded border border-line bg-white p-6 shadow-sm"
                   >
                     <div className="grid h-12 w-12 place-items-center rounded bg-blue-50 text-electric transition group-hover:bg-electric group-hover:text-white">
                       <Icon size={24} />
                     </div>
-                    <h3 className="mt-5 text-lg font-black">{service.title}</h3>
+                    <h3 className="mt-5 font-display text-lg font-black">{service.title}</h3>
                     <p className="mt-3 text-sm leading-6 text-steel">{service.text}</p>
                   </article>
                 )
@@ -570,7 +623,7 @@ function App() {
           <div className="section-shell grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
             <div>
               <p className="eyebrow">Contact</p>
-              <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">Reach out about roles or support</h2>
+              <h2 className="mt-3 font-display text-3xl font-black tracking-tight sm:text-4xl">Reach out about roles or support</h2>
               <p className="mt-4 text-base leading-7 text-steel">
                 Employers and recruiters can reach out about full-time cybersecurity or IT opportunities.
                 Local clients can also request practical technology support.

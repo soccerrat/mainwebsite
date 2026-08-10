@@ -12,10 +12,13 @@ export default {
         electric: '#1f8fff'
       },
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif']
+        sans: ['Manrope', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['Sora', 'Manrope', 'ui-sans-serif', 'sans-serif'],
+        mono: ['IBM Plex Mono', 'ui-monospace', 'SFMono-Regular', 'monospace']
       },
       boxShadow: {
-        soft: '0 18px 60px rgba(7, 17, 31, 0.12)'
+        soft: '0 18px 60px rgba(7, 17, 31, 0.12)',
+        electric: '0 22px 70px rgba(31, 143, 255, 0.22)'
       }
     }
   },
