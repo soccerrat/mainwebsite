@@ -1,6 +1,6 @@
-# Neander Devil Cybersecurity & IT Portfolio
+# Neander Cyber Solutions
 
-Modern React, Vite, and Tailwind CSS portfolio for a cybersecurity and IT professional seeking full-time roles while also offering independent IT support.
+Modern React, Vite, and Tailwind CSS business website for cybersecurity consulting and independent IT support.
 
 ## Run locally
 
@@ -20,7 +20,4 @@ npm run build
 - Main website content: `src/App.jsx`
 - Brand colors and Tailwind theme: `tailwind.config.js`
 - Global CSS helpers: `src/index.css`
-- Resume download file: `public/resume.pdf`
 - Profile photo: `public/profile-photo.jpg`
-
-The resume download points to `public/resume.pdf`.

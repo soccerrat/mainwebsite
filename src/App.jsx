@@ -1,23 +1,22 @@
 import {
   ArrowRight,
-  Award,
   BadgeCheck,
   BriefcaseBusiness,
   CheckCircle2,
   Church,
-  ClipboardList,
+  ClipboardCheck,
   CloudCog,
-  Download,
-  FileText,
+  DownloadCloud,
   HardDrive,
   Laptop,
   Linkedin,
   LockKeyhole,
   Mail,
-  MapPin,
   Menu,
+  MessageSquare,
   Phone,
   ShieldCheck,
+  Sparkles,
   UserRound,
   Wifi,
   X
@@ -25,164 +24,116 @@ import {
 import { useState } from 'react'
 
 const navItems = [
-  { href: '#seeking', label: 'Seeking' },
-  { href: '#background', label: 'Background' },
-  { href: '#resume', label: 'Resume' },
-  { href: '#skills', label: 'Skills' },
+  { href: '#clients', label: 'Clients' },
   { href: '#services', label: 'Services' },
+  { href: '#process', label: 'Process' },
+  { href: '#about', label: 'About' },
   { href: '#contact', label: 'Contact' }
 ]
 
-const targetRoles = [
-  'Cybersecurity Analyst',
-  'IT Support Specialist',
-  'Help Desk Technician',
-  'Technical Support Specialist',
-  'SOC Analyst',
-  'Desktop Support Technician',
-  'Junior Systems Administrator',
-  'Network Support Technician'
-]
-
-const quickView = [
+const clientTypes = [
   {
-    label: 'Target Roles',
-    value: 'Cybersecurity Analyst, IT Support Specialist, Help Desk Technician, SOC Analyst, Technical Support Specialist'
+    title: 'Individuals & Families',
+    text: 'Patient help with slow computers, new device setup, Wi-Fi problems, password cleanup, account protection, and backup planning.',
+    icon: UserRound
   },
   {
-    label: 'Certifications',
-    value: 'CompTIA A+, CompTIA Security+'
+    title: 'Small Businesses',
+    text: 'Reliable support for business email, cloud tools, devices, networks, security basics, documentation, and day-to-day operations.',
+    icon: BriefcaseBusiness
   },
   {
-    label: 'Education',
-    value: 'Cybersecurity graduate background'
-  },
-  {
-    label: 'Strengths',
-    value: 'Troubleshooting, security fundamentals, user support, account security, documentation, technical communication'
-  },
-  {
-    label: 'Open To',
-    value: 'Full-time IT and cybersecurity opportunities'
-  }
-]
-
-const heroSignals = [
-  'CompTIA A+',
-  'Security+',
-  'Cybersecurity graduate background',
-  'Open to full-time roles'
-]
-
-const proofPoints = [
-  {
-    label: 'Role focus',
-    value: 'Cybersecurity / IT support'
-  },
-  {
-    label: 'Work style',
-    value: 'Clear docs, patient support'
-  },
-  {
-    label: 'Also available',
-    value: 'Local tech support'
-  }
-]
-
-const credentials = [
-  'CompTIA A+',
-  'CompTIA Security+',
-  'Cybersecurity Graduate',
-  'IT Support',
-  'Cybersecurity'
-]
-
-const skills = [
-  'Technical troubleshooting',
-  'Help desk support',
-  'Account security',
-  'Password and MFA setup',
-  'Security awareness',
-  'Microsoft 365 support',
-  'Google Workspace support',
-  'Wi-Fi and network basics',
-  'Documentation',
-  'Customer communication',
-  'Backup planning',
-  'Livestream and AV support'
-]
-
-const projects = [
-  {
-    title: 'User Support & Troubleshooting',
-    text: 'Hands-on experience helping people diagnose slow computers, setup problems, account access issues, software confusion, and device reliability concerns.'
-  },
-  {
-    title: 'Account Protection & Security Awareness',
-    text: 'Practical support with password cleanup, multi-factor authentication, safer account recovery, phishing awareness, and security fundamentals.'
-  },
-  {
-    title: 'Local Organization Technology Support',
-    text: 'Support for small offices, churches, nonprofits, and community settings where clear communication and dependable systems matter.'
+    title: 'Churches & Nonprofits',
+    text: 'Practical help with office technology, Wi-Fi, livestream workflows, OBS, AV troubleshooting, account safety, and volunteer-friendly setup.',
+    icon: Church
   }
 ]
 
 const services = [
   {
     title: 'Computer Troubleshooting & Setup',
-    text: 'Help with slow devices, new computers, updates, software problems, printers, and confusing tech errors.',
+    text: 'Fix slow devices, setup new computers, resolve software issues, clean up confusing alerts, and get systems working again.',
     icon: Laptop
   },
   {
     title: 'Wi-Fi & Network Support',
-    text: 'Setup and troubleshooting for home, office, and organization networks with better reliability and security.',
+    text: 'Improve coverage, secure router settings, organize network names, troubleshoot drops, and support home or office connectivity.',
     icon: Wifi
   },
   {
     title: 'Account, Email & Password Security',
-    text: 'Password cleanup, MFA setup, safer recovery options, and practical protection for important accounts.',
+    text: 'Set up MFA, strengthen passwords, review recovery settings, reduce phishing risk, and protect important accounts.',
     icon: LockKeyhole
   },
   {
     title: 'Small Business IT Support',
-    text: 'Dependable support for business email, devices, cloud tools, network basics, and everyday operations.',
+    text: 'Support Microsoft 365, Google Workspace, business email, devices, basic documentation, and practical technology decisions.',
     icon: BriefcaseBusiness
   },
   {
     title: 'Cybersecurity Checkups',
-    text: 'Plain-language reviews that identify risks, strengthen defenses, and turn security concerns into next steps.',
+    text: 'Review common risks, identify weak spots, explain priorities clearly, and create a practical protection plan.',
     icon: ShieldCheck
   },
   {
     title: 'Data Backup Planning',
-    text: 'Simple backup plans for personal files, business records, church media, and critical organization data.',
+    text: 'Build a simple backup strategy for files, business records, photos, church media, and other important data.',
     icon: HardDrive
   },
   {
     title: 'Church Livestream & AV Support',
-    text: 'Support for OBS, livestream workflows, audio/video troubleshooting, presentation devices, and Wi-Fi needs.',
+    text: 'Support OBS, cameras, audio routing, presentation devices, streaming workflows, and Sunday-ready troubleshooting.',
     icon: Church
   },
   {
     title: 'Resume, LinkedIn & Tech Career Help',
-    text: 'Support for career materials, entry-level IT direction, LinkedIn cleanup, and explaining technical experience clearly.',
+    text: 'Help people organize career materials, improve LinkedIn, and explain technical experience with confidence.',
     icon: Linkedin
   }
 ]
 
+const processSteps = [
+  {
+    title: 'Listen',
+    text: 'We start with the real problem, the people affected, and what “fixed” needs to look like.',
+    icon: MessageSquare
+  },
+  {
+    title: 'Stabilize',
+    text: 'I troubleshoot the immediate issue and explain what is happening in plain language.',
+    icon: ClipboardCheck
+  },
+  {
+    title: 'Secure',
+    text: 'Where security matters, I tighten accounts, settings, backups, and risky habits.',
+    icon: ShieldCheck
+  },
+  {
+    title: 'Document',
+    text: 'You leave with clear next steps, settings, recommendations, and a support path.',
+    icon: DownloadCloud
+  }
+]
+
+const trustPoints = [
+  'CompTIA A+',
+  'CompTIA Security+',
+  'Cybersecurity graduate background',
+  'Clear explanations',
+  'Local support',
+  'Home, church, nonprofit, and small business focus'
+]
+
 const contactOptions = [
-  'Full-time role opportunity',
-  'Recruiter or employer inquiry',
-  'Cybersecurity role discussion',
-  'IT support role discussion',
   'Computer Troubleshooting & Setup',
   'Wi-Fi & Network Support',
   'Account, Email & Password Security',
   'Small Business IT Support',
-  'Cybersecurity Checkups',
+  'Cybersecurity Checkup',
   'Data Backup Planning',
   'Church Livestream & AV Support',
-  'Resume, LinkedIn & Tech Career Help'
+  'Resume, LinkedIn & Tech Career Help',
+  'Not sure yet'
 ]
 
 const contactInfo = {
@@ -201,33 +152,33 @@ function ProfilePhoto() {
     <div className="reveal-in reveal-delay-2 relative mx-auto w-full max-w-md">
       <div className="absolute -left-4 top-8 hidden h-28 w-2 rounded bg-electric shadow-electric sm:block" />
       <div className="rounded border border-white/12 bg-white/8 p-4 shadow-electric backdrop-blur">
-      <div className="relative overflow-hidden rounded border border-white/10 bg-navy">
-        {hasPhoto ? (
-          <img
-            src="/profile-photo.jpg"
-            alt="Neander Devil"
-            onError={() => setHasPhoto(false)}
-            className="aspect-[4/5] w-full object-cover object-[50%_18%]"
-          />
-        ) : (
-          <div className="grid aspect-[4/5] w-full place-items-center bg-[linear-gradient(135deg,#0b1b33,#102a4f)]">
-            <div className="grid h-28 w-28 place-items-center rounded-full border border-white/20 bg-electric text-4xl font-black text-white">
-              ND
+        <div className="relative overflow-hidden rounded border border-white/10 bg-navy">
+          {hasPhoto ? (
+            <img
+              src="/profile-photo.jpg"
+              alt="Neander Devil"
+              onError={() => setHasPhoto(false)}
+              className="aspect-[4/5] w-full object-cover object-[50%_18%]"
+            />
+          ) : (
+            <div className="grid aspect-[4/5] w-full place-items-center bg-[linear-gradient(135deg,#0b1b33,#102a4f)]">
+              <div className="grid h-28 w-28 place-items-center rounded-full border border-white/20 bg-electric text-4xl font-black text-white">
+                ND
+              </div>
             </div>
+          )}
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy via-navy/70 to-transparent p-5">
+            <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-electric">Principal consultant</p>
+            <p className="mt-1 font-display text-2xl font-black text-white">Neander Devil</p>
           </div>
-        )}
-        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy via-navy/70 to-transparent p-5">
-          <p className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-electric">Candidate signal</p>
-          <p className="mt-1 font-display text-2xl font-black text-white">Cybersecurity & IT</p>
         </div>
-      </div>
-      <div className="mt-4 grid grid-cols-2 gap-3">
-        {['Security-minded', 'Support-ready'].map((item) => (
-          <div key={item} className="rounded border border-white/10 bg-white/8 px-3 py-2 text-center text-xs font-bold text-slate-100">
-            {item}
-          </div>
-        ))}
-      </div>
+        <div className="mt-4 grid grid-cols-2 gap-3">
+          {['Secure setup', 'Clear support'].map((item) => (
+            <div key={item} className="rounded border border-white/10 bg-white/8 px-3 py-2 text-center text-xs font-bold text-slate-100">
+              {item}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )
@@ -242,7 +193,7 @@ function App() {
     const form = event.currentTarget
     const formData = new FormData(form)
 
-    setFormStatus({ type: 'loading', message: 'Sending your message...' })
+    setFormStatus({ type: 'loading', message: 'Sending your request...' })
 
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
@@ -255,19 +206,19 @@ function App() {
         form.reset()
         setFormStatus({
           type: 'success',
-          message: 'Thanks. Your message was sent successfully.'
+          message: 'Thanks. Your request was sent successfully.'
         })
         return
       }
 
       setFormStatus({
         type: 'error',
-        message: result.message || 'Something went wrong. Please email me directly.'
+        message: result.message || 'Your request could not be sent. Please email me directly.'
       })
     } catch {
       setFormStatus({
         type: 'error',
-        message: 'Message could not be sent. Please email me directly.'
+        message: 'Your request could not be sent. Please email me directly.'
       })
     }
   }
@@ -277,12 +228,12 @@ function App() {
       <header className="sticky top-0 z-50 border-b border-white/10 bg-navy/95 text-white backdrop-blur">
         <nav className="section-shell flex h-16 items-center justify-between">
           <a href="#top" className="focus-ring flex items-center gap-3 rounded">
-            <span className="grid h-10 w-10 place-items-center rounded bg-electric text-base font-black text-white">
+            <span className="grid h-10 w-10 place-items-center rounded bg-electric font-display text-base font-black text-white">
               ND
             </span>
             <span className="leading-tight">
-              <span className="block text-sm font-bold">Neander Devil</span>
-              <span className="block text-xs text-slate-300">Cybersecurity & IT Professional</span>
+              <span className="block text-sm font-bold">Neander Cyber Solutions</span>
+              <span className="block text-xs text-slate-300">Cybersecurity & IT Consulting</span>
             </span>
           </a>
 
@@ -332,45 +283,44 @@ function App() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(31,143,255,0.24),transparent_32%),linear-gradient(135deg,rgba(255,255,255,0.07),transparent_38%)]" />
           <div className="section-shell relative grid min-h-[calc(100vh-4rem)] items-center gap-12 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:py-20">
             <div className="reveal-in max-w-3xl">
-              <p className="eyebrow">Seeking full-time cybersecurity and IT opportunities</p>
+              <p className="eyebrow">Cybersecurity & IT consulting for local organizations</p>
               <p className="mt-5 font-mono text-sm font-bold uppercase tracking-[0.14em] text-slate-300">
-                Neander Devil
+                Neander Cyber Solutions
               </p>
               <h1 className="mt-3 max-w-4xl font-display text-4xl font-black leading-[1.02] sm:text-5xl lg:text-6xl">
-                Cybersecurity & IT Professional
+                Practical tech support with security built in.
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200">
-                I am a cybersecurity and IT professional with CompTIA A+ and Security+ certifications,
-                a cybersecurity graduate background, and hands-on experience solving real-world
-                technology problems. I am currently seeking a full-time opportunity in cybersecurity,
-                IT support, technical support, or related technology roles.
+                I help individuals, churches, nonprofits, and small businesses fix frustrating
+                technology problems, protect important accounts, improve Wi-Fi, plan backups, and keep
+                systems running with less stress.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a
-                  href="#resume"
+                  href="#contact"
                   className="focus-ring inline-flex items-center justify-center gap-2 rounded bg-electric px-5 py-3 text-sm font-bold text-white shadow-soft transition hover:bg-blue-400"
                 >
-                  <Download size={18} />
-                  View Resume
-                </a>
-                <a
-                  href="#background"
-                  className="focus-ring inline-flex items-center justify-center gap-2 rounded border border-white/20 px-5 py-3 text-sm font-bold text-white transition hover:border-white/40 hover:bg-white/10"
-                >
-                  View Professional Background
+                  Request Support
                   <ArrowRight size={18} />
                 </a>
                 <a
                   href="#services"
+                  className="focus-ring inline-flex items-center justify-center gap-2 rounded border border-white/20 px-5 py-3 text-sm font-bold text-white transition hover:border-white/40 hover:bg-white/10"
+                >
+                  View Services
+                </a>
+                <a
+                  href={`tel:${contactInfo.phoneHref}`}
                   className="focus-ring inline-flex items-center justify-center gap-2 rounded px-5 py-3 text-sm font-bold text-white transition hover:bg-white/10"
                 >
-                  Request IT Support
+                  <Phone size={18} />
+                  Call Now
                 </a>
               </div>
               <div className="mt-8 flex flex-wrap gap-2">
-                {heroSignals.map((signal) => (
-                  <span key={signal} className="rounded border border-white/15 bg-white/10 px-3 py-2 font-mono text-xs font-bold uppercase tracking-[0.12em] text-slate-100">
-                    {signal}
+                {trustPoints.slice(0, 4).map((point) => (
+                  <span key={point} className="rounded border border-white/15 bg-white/10 px-3 py-2 font-mono text-xs font-bold uppercase tracking-[0.12em] text-slate-100">
+                    {point}
                   </span>
                 ))}
               </div>
@@ -380,222 +330,62 @@ function App() {
           </div>
           <div className="section-shell relative pb-8">
             <div className="grid gap-3 border-t border-white/10 pt-5 sm:grid-cols-3">
-              {proofPoints.map((point) => (
-                <div key={point.label} className="rounded border border-white/10 bg-white/8 p-4 backdrop-blur">
-                  <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-electric">{point.label}</p>
-                  <p className="mt-2 text-sm font-bold text-white">{point.value}</p>
+              {[
+                ['Support lane', 'Homes, churches, nonprofits, small businesses'],
+                ['Security lens', 'Accounts, backups, Wi-Fi, email, user habits'],
+                ['Client experience', 'Plain language, calm process, clear next steps']
+              ].map(([label, value]) => (
+                <div key={label} className="rounded border border-white/10 bg-white/8 p-4 backdrop-blur">
+                  <p className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-electric">{label}</p>
+                  <p className="mt-2 text-sm font-bold text-white">{value}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section id="seeking" className="bg-white py-16 sm:py-24">
+        <section id="clients" className="bg-white py-16 sm:py-24">
           <div className="section-shell">
-            <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-              <div>
-                <p className="eyebrow">Currently Seeking</p>
-                <h2 className="mt-3 font-display text-3xl font-black tracking-tight sm:text-4xl">Ready for the next full-time role</h2>
-                <p className="mt-5 text-lg leading-8 text-steel">
-                  I am currently seeking a full-time opportunity in cybersecurity, IT support,
-                  technical support, security operations, or related technology roles. I am especially
-                  interested in positions where I can combine troubleshooting, user support, security
-                  awareness, documentation, and hands-on technical problem-solving.
-                </p>
-              </div>
-              <div className="grid gap-3 sm:grid-cols-2">
-                {targetRoles.map((role) => (
-                  <div key={role} className="card-lift flex items-center gap-3 rounded border border-line bg-cloud p-4 shadow-sm">
-                    <CheckCircle2 className="shrink-0 text-electric" size={20} />
-                    <span className="font-bold">{role}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-16 sm:py-24">
-          <div className="section-shell">
-            <div className="max-w-2xl">
-              <p className="eyebrow">Recruiter Quick View</p>
-              <h2 className="mt-3 font-display text-3xl font-black tracking-tight sm:text-4xl">The fast scan for hiring teams</h2>
-            </div>
-            <div className="mt-10 grid gap-4 lg:grid-cols-5">
-              {quickView.map((item) => (
-                <article key={item.label} className="card-lift rounded border border-line bg-white p-5 shadow-sm">
-                  <p className="font-mono text-xs font-black uppercase tracking-[0.12em] text-electric">{item.label}</p>
-                  <p className="mt-3 text-sm leading-6 text-steel">{item.value}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="background" className="bg-white py-16 sm:py-24">
-          <div className="section-shell grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-            <div className="rounded border border-line bg-cloud p-6 shadow-sm">
-              <div className="grid h-16 w-16 place-items-center rounded bg-navy text-white">
-                <UserRound size={31} />
-              </div>
-              <h2 className="mt-6 font-display text-3xl font-black tracking-tight">Neander Devil</h2>
-              <p className="mt-2 font-semibold text-electric">Cybersecurity & IT Professional</p>
-              <div className="mt-6 grid gap-3 text-sm text-steel">
-                <p className="flex items-center gap-3">
-                  <MapPin size={18} className="text-electric" />
-                  Open to full-time cybersecurity and IT opportunities
-                </p>
-                <p className="flex items-center gap-3">
-                  <BriefcaseBusiness size={18} className="text-electric" />
-                  Also provides independent local technology support
-                </p>
-              </div>
-            </div>
-
-            <div>
-              <p className="eyebrow">Professional Summary</p>
-              <h2 className="mt-3 font-display text-3xl font-black tracking-tight sm:text-4xl">Security-minded support with clear communication</h2>
-              <p className="mt-5 text-lg leading-8 text-steel">
-                Neander Devil is a cybersecurity and IT professional with CompTIA A+ and
-                Security+ certifications, a cybersecurity graduate background, and hands-on experience
-                helping people solve technical problems. He brings a practical support mindset,
-                security fundamentals, and the ability to explain complex issues in plain language.
-              </p>
-              <p className="mt-4 text-lg leading-8 text-steel">
-                His professional direction is focused on full-time cybersecurity, IT support,
-                technical support, SOC, help desk, and related technology roles. He is especially
-                interested in environments that value troubleshooting, documentation, user support,
-                account security, and steady technical growth.
+            <div className="max-w-3xl">
+              <p className="eyebrow">Who I Help</p>
+              <h2 className="mt-3 font-display text-3xl font-black tracking-tight sm:text-4xl">
+                Technology help for people who need answers, not jargon.
+              </h2>
+              <p className="mt-4 text-base leading-7 text-steel">
+                The work changes from client to client. The standard stays the same: professional,
+                patient, secure, and easy to understand.
               </p>
             </div>
-          </div>
-        </section>
 
-        <section id="resume" className="bg-navy py-16 text-white sm:py-24">
-          <div className="section-shell">
-            <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
-              <div>
-                <p className="eyebrow">Resume & Credentials</p>
-                <h2 className="mt-3 font-display text-3xl font-black tracking-tight sm:text-4xl">
-                  Certified, prepared, and ready to contribute
-                </h2>
-                <p className="mt-4 leading-7 text-slate-200">
-                  Resume summary: cybersecurity and IT professional with CompTIA A+ and Security+,
-                  cybersecurity graduate preparation, technical troubleshooting experience, account
-                  security knowledge, documentation skills, and a strong user-support foundation.
-                </p>
-
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {credentials.map((credential) => (
-                    <span
-                      key={credential}
-                      className="inline-flex items-center gap-2 rounded border border-white/15 bg-white/10 px-3 py-2 text-sm font-bold text-white"
-                    >
-                      <BadgeCheck size={16} className="text-electric" />
-                      {credential}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                  <a
-                    href="/resume.pdf"
-                    download
-                    className="focus-ring inline-flex items-center justify-center gap-2 rounded bg-white px-5 py-3 text-sm font-black text-navy transition hover:bg-blue-50"
-                  >
-                    <Download size={18} />
-                    Download Resume
-                  </a>
-                  <a
-                    href={contactInfo.linkedin}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="focus-ring inline-flex items-center justify-center gap-2 rounded border border-white/20 px-5 py-3 text-sm font-black text-white transition hover:border-white/40 hover:bg-white/10"
-                  >
-                    <Linkedin size={18} />
-                    LinkedIn
-                  </a>
-                  <a
-                    href="#contact"
-                    className="focus-ring inline-flex items-center justify-center gap-2 rounded px-5 py-3 text-sm font-black text-white transition hover:bg-white/10"
-                  >
-                    <Mail size={18} />
-                    Contact Me
-                  </a>
-                </div>
-              </div>
-
-              <div className="overflow-hidden rounded border border-white/15 bg-white shadow-soft">
-                <div className="flex items-center justify-between border-b border-line bg-cloud px-4 py-3 text-navy">
-                  <div className="flex items-center gap-2 text-sm font-black">
-                    <FileText size={18} className="text-electric" />
-                    resume.pdf
-                  </div>
-                  <a href="/resume.pdf" className="focus-ring rounded text-sm font-bold text-electric hover:text-blue-700">
-                    Open PDF
-                  </a>
-                </div>
-                <object
-                  data="/resume.pdf"
-                  type="application/pdf"
-                  className="h-[520px] w-full bg-white"
-                  aria-label="Embedded resume PDF viewer"
-                >
-                  <div className="p-6 text-navy">
-                    <p className="font-bold">The PDF viewer could not load in this browser.</p>
-                    <a href="/resume.pdf" className="mt-3 inline-flex font-bold text-electric">
-                      Open the resume PDF
-                    </a>
-                  </div>
-                </object>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="skills" className="py-16 sm:py-24">
-          <div className="section-shell">
-            <div className="max-w-2xl">
-              <p className="eyebrow">Skills</p>
-              <h2 className="mt-3 font-display text-3xl font-black tracking-tight sm:text-4xl">Practical technical strengths</h2>
-            </div>
-            <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {skills.map((skill) => (
-                <div key={skill} className="card-lift flex items-center gap-3 rounded border border-line bg-white p-4 shadow-sm">
-                  <Award className="shrink-0 text-electric" size={20} />
-                  <span className="font-bold">{skill}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-white py-16 sm:py-24">
-          <div className="section-shell">
-            <div className="max-w-2xl">
-              <p className="eyebrow">Experience / Projects</p>
-              <h2 className="mt-3 font-display text-3xl font-black tracking-tight sm:text-4xl">Hands-on problem solving</h2>
-            </div>
             <div className="mt-10 grid gap-4 lg:grid-cols-3">
-              {projects.map((project) => (
-                <article key={project.title} className="card-lift rounded border border-line bg-cloud p-6 shadow-sm">
-                  <ClipboardList className="text-electric" size={28} />
-                  <h3 className="mt-5 font-display text-xl font-black">{project.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-steel">{project.text}</p>
-                </article>
-              ))}
+              {clientTypes.map((client) => {
+                const Icon = client.icon
+                return (
+                  <article key={client.title} className="card-lift rounded border border-line bg-cloud p-6 shadow-sm">
+                    <div className="grid h-12 w-12 place-items-center rounded bg-navy text-white">
+                      <Icon size={24} />
+                    </div>
+                    <h3 className="mt-5 font-display text-xl font-black">{client.title}</h3>
+                    <p className="mt-3 text-sm leading-6 text-steel">{client.text}</p>
+                  </article>
+                )
+              })}
             </div>
           </div>
         </section>
 
         <section id="services" className="py-16 sm:py-24">
           <div className="section-shell">
-            <div className="max-w-3xl">
-              <p className="eyebrow">Services</p>
-              <h2 className="mt-3 font-display text-3xl font-black tracking-tight sm:text-4xl">Independent IT & Cybersecurity Support</h2>
-              <p className="mt-4 text-base leading-7 text-steel">
-                In addition to my professional career goals, I also provide practical technology
-                support for individuals, small businesses, churches, nonprofits, and local organizations.
+            <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+              <div>
+                <p className="eyebrow">Services</p>
+                <h2 className="mt-3 font-display text-3xl font-black tracking-tight sm:text-4xl">
+                  Independent IT & Cybersecurity Support
+                </h2>
+              </div>
+              <p className="text-base leading-7 text-steel">
+                From urgent troubleshooting to security checkups, I provide hands-on support that helps
+                clients make better technology decisions and avoid preventable problems.
               </p>
             </div>
 
@@ -619,14 +409,72 @@ function App() {
           </div>
         </section>
 
-        <section id="contact" className="bg-white py-16 sm:py-24">
+        <section id="process" className="bg-navy py-16 text-white sm:py-24">
+          <div className="section-shell">
+            <div className="max-w-3xl">
+              <p className="eyebrow">Process</p>
+              <h2 className="mt-3 font-display text-3xl font-black tracking-tight sm:text-4xl">
+                A calm path from “something is wrong” to “we know what to do.”
+              </h2>
+            </div>
+            <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              {processSteps.map((step) => {
+                const Icon = step.icon
+                return (
+                  <article key={step.title} className="rounded border border-white/12 bg-white/8 p-6 backdrop-blur">
+                    <Icon className="text-electric" size={28} />
+                    <h3 className="mt-5 font-display text-xl font-black">{step.title}</h3>
+                    <p className="mt-3 text-sm leading-6 text-slate-200">{step.text}</p>
+                  </article>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section id="about" className="bg-white py-16 sm:py-24">
+          <div className="section-shell grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+            <div className="rounded border border-line bg-cloud p-6 shadow-sm">
+              <p className="eyebrow">Trust Signals</p>
+              <div className="mt-6 grid gap-3">
+                {trustPoints.map((point) => (
+                  <div key={point} className="flex items-center gap-3 rounded border border-line bg-white p-4">
+                    <BadgeCheck className="shrink-0 text-electric" size={20} />
+                    <span className="font-bold">{point}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <p className="eyebrow">About</p>
+              <h2 className="mt-3 font-display text-3xl font-black tracking-tight sm:text-4xl">
+                Professional support with a security-first mindset.
+              </h2>
+              <p className="mt-5 text-lg leading-8 text-steel">
+                Neander Devil is a cybersecurity and IT professional with CompTIA A+ and Security+
+                credentials, a cybersecurity graduate background, and hands-on experience helping
+                people and organizations solve technical problems.
+              </p>
+              <p className="mt-4 text-lg leading-8 text-steel">
+                Clients work with Neander because he makes technology less overwhelming. He explains
+                the problem, fixes what can be fixed, flags what needs attention, and helps people
+                build safer habits around their devices, accounts, networks, and data.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" className="py-16 sm:py-24">
           <div className="section-shell grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
             <div>
               <p className="eyebrow">Contact</p>
-              <h2 className="mt-3 font-display text-3xl font-black tracking-tight sm:text-4xl">Reach out about roles or support</h2>
+              <h2 className="mt-3 font-display text-3xl font-black tracking-tight sm:text-4xl">
+                Tell me what is going on with your technology.
+              </h2>
               <p className="mt-4 text-base leading-7 text-steel">
-                Employers and recruiters can reach out about full-time cybersecurity or IT opportunities.
-                Local clients can also request practical technology support.
+                Share the issue, the type of help you need, and the best way to reach you. I will
+                follow up with clear next steps.
               </p>
               <div className="mt-8 grid gap-4">
                 <a href={`mailto:${contactInfo.email}`} className="focus-ring flex items-center gap-3 rounded text-steel transition hover:text-ink">
@@ -644,29 +492,29 @@ function App() {
               </div>
             </div>
 
-            <form onSubmit={handleContactSubmit} className="rounded border border-line bg-cloud p-5 shadow-sm sm:p-6">
+            <form onSubmit={handleContactSubmit} className="rounded border border-line bg-white p-5 shadow-soft sm:p-6">
               <input type="hidden" name="access_key" value={web3FormsAccessKey} />
-              <input type="hidden" name="subject" value="New message from Neander Devil portfolio website" />
-              <input type="hidden" name="from_name" value="Neander Devil Portfolio" />
+              <input type="hidden" name="subject" value="New IT support request from Neander Cyber Solutions website" />
+              <input type="hidden" name="from_name" value="Neander Cyber Solutions" />
               <input type="checkbox" name="botcheck" className="hidden" tabIndex="-1" autoComplete="off" />
               <div className="grid gap-4 sm:grid-cols-2">
                 <label className="grid gap-2 text-sm font-bold">
                   Name
-                  <input className="focus-ring rounded border border-line bg-white px-4 py-3 font-normal text-ink" name="name" type="text" autoComplete="name" required />
+                  <input className="focus-ring rounded border border-line bg-cloud px-4 py-3 font-normal text-ink" name="name" type="text" autoComplete="name" required />
                 </label>
                 <label className="grid gap-2 text-sm font-bold">
                   Email
-                  <input className="focus-ring rounded border border-line bg-white px-4 py-3 font-normal text-ink" name="email" type="email" autoComplete="email" required />
+                  <input className="focus-ring rounded border border-line bg-cloud px-4 py-3 font-normal text-ink" name="email" type="email" autoComplete="email" required />
                 </label>
                 <label className="grid gap-2 text-sm font-bold">
                   Phone
-                  <input className="focus-ring rounded border border-line bg-white px-4 py-3 font-normal text-ink" name="phone" type="tel" autoComplete="tel" />
+                  <input className="focus-ring rounded border border-line bg-cloud px-4 py-3 font-normal text-ink" name="phone" type="tel" autoComplete="tel" />
                 </label>
                 <label className="grid gap-2 text-sm font-bold">
-                  Inquiry Type
-                  <select className="focus-ring rounded border border-line bg-white px-4 py-3 font-normal text-ink" name="service" defaultValue="">
+                  Service Needed
+                  <select className="focus-ring rounded border border-line bg-cloud px-4 py-3 font-normal text-ink" name="service" defaultValue="">
                     <option value="" disabled>
-                      Select an inquiry
+                      Select a service
                     </option>
                     {contactOptions.map((option) => (
                       <option key={option} value={option}>
@@ -678,7 +526,7 @@ function App() {
                 <label className="grid gap-2 text-sm font-bold sm:col-span-2">
                   Message
                   <textarea
-                    className="focus-ring min-h-36 rounded border border-line bg-white px-4 py-3 font-normal text-ink"
+                    className="focus-ring min-h-36 rounded border border-line bg-cloud px-4 py-3 font-normal text-ink"
                     name="message"
                     required
                   />
@@ -691,7 +539,7 @@ function App() {
                       ? 'border-emerald-200 bg-emerald-50 text-emerald-800'
                       : formStatus.type === 'error'
                         ? 'border-red-200 bg-red-50 text-red-800'
-                        : 'border-line bg-white text-steel'
+                        : 'border-line bg-cloud text-steel'
                   }`}
                   role="status"
                 >
@@ -701,9 +549,9 @@ function App() {
               <button
                 type="submit"
                 disabled={formStatus.type === 'loading'}
-                className="focus-ring mt-5 inline-flex w-full items-center justify-center gap-2 rounded bg-electric px-5 py-3 text-sm font-black text-white transition hover:bg-blue-500 sm:w-auto"
+                className="focus-ring mt-5 inline-flex w-full items-center justify-center gap-2 rounded bg-electric px-5 py-3 text-sm font-black text-white transition hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
               >
-                {formStatus.type === 'loading' ? 'Sending...' : 'Send Message'}
+                {formStatus.type === 'loading' ? 'Sending...' : 'Request Support'}
                 <ArrowRight size={18} />
               </button>
             </form>
@@ -713,10 +561,10 @@ function App() {
 
       <footer className="border-t border-line bg-white py-8">
         <div className="section-shell flex flex-col gap-3 text-sm text-steel sm:flex-row sm:items-center sm:justify-between">
-          <p>&copy; {new Date().getFullYear()} Neander Devil. Cybersecurity & IT Professional.</p>
+          <p>&copy; {new Date().getFullYear()} Neander Cyber Solutions. Cybersecurity & IT Consulting.</p>
           <p className="flex items-center gap-2">
             <CloudCog size={17} className="text-electric" />
-            Full-time cybersecurity/IT candidate and practical technology support.
+            Practical technology support, explained clearly.
           </p>
         </div>
       </footer>
