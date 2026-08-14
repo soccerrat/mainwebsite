@@ -1,4 +1,4 @@
-# Neander Cyber Solutions
+# SecureBridge IT Solutions
 
 Modern React, Vite, and Tailwind CSS business website for cybersecurity consulting and independent IT support.
 

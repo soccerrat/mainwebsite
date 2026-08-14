@@ -95,7 +95,7 @@ const services = [
 const processSteps = [
   {
     title: 'Listen',
-    text: 'We start with the real problem, the people affected, and what “fixed” needs to look like.',
+    text: 'We start with the real problem, the people affected, and what fixed needs to look like.',
     icon: MessageSquare
   },
   {
@@ -143,6 +143,7 @@ const contactInfo = {
   linkedin: 'https://linked.com/neanderdevil/'
 }
 
+const businessName = 'SecureBridge IT Solutions'
 const web3FormsAccessKey = '02b17a67-ee5c-41b5-ba19-eb527dcd28cb'
 
 function ProfilePhoto() {
@@ -229,10 +230,10 @@ function App() {
         <nav className="section-shell flex h-16 items-center justify-between">
           <a href="#top" className="focus-ring flex items-center gap-3 rounded">
             <span className="grid h-10 w-10 place-items-center rounded bg-electric font-display text-base font-black text-white">
-              ND
+              SB
             </span>
             <span className="leading-tight">
-              <span className="block text-sm font-bold">Neander Cyber Solutions</span>
+              <span className="block text-sm font-bold">{businessName}</span>
               <span className="block text-xs text-slate-300">Cybersecurity & IT Consulting</span>
             </span>
           </a>
@@ -285,13 +286,13 @@ function App() {
             <div className="reveal-in max-w-3xl">
               <p className="eyebrow">Cybersecurity & IT consulting for local organizations</p>
               <p className="mt-5 font-mono text-sm font-bold uppercase tracking-[0.14em] text-slate-300">
-                Neander Cyber Solutions
+                {businessName}
               </p>
               <h1 className="mt-3 max-w-4xl font-display text-4xl font-black leading-[1.02] sm:text-5xl lg:text-6xl">
                 Practical tech support with security built in.
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200">
-                I help individuals, churches, nonprofits, and small businesses fix frustrating
+                SecureBridge helps individuals, churches, nonprofits, and small businesses fix frustrating
                 technology problems, protect important accounts, improve Wi-Fi, plan backups, and keep
                 systems running with less stress.
               </p>
@@ -414,7 +415,7 @@ function App() {
             <div className="max-w-3xl">
               <p className="eyebrow">Process</p>
               <h2 className="mt-3 font-display text-3xl font-black tracking-tight sm:text-4xl">
-                A calm path from “something is wrong” to “we know what to do.”
+                A calm path from something is wrong to we know what to do.
               </h2>
             </div>
             <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -452,7 +453,7 @@ function App() {
                 Professional support with a security-first mindset.
               </h2>
               <p className="mt-5 text-lg leading-8 text-steel">
-                Neander Devil is a cybersecurity and IT professional with CompTIA A+ and Security+
+                SecureBridge IT Solutions is led by Neander Devil, a cybersecurity and IT professional with CompTIA A+ and Security+
                 credentials, a cybersecurity graduate background, and hands-on experience helping
                 people and organizations solve technical problems.
               </p>
@@ -494,8 +495,8 @@ function App() {
 
             <form onSubmit={handleContactSubmit} className="rounded border border-line bg-white p-5 shadow-soft sm:p-6">
               <input type="hidden" name="access_key" value={web3FormsAccessKey} />
-              <input type="hidden" name="subject" value="New IT support request from Neander Cyber Solutions website" />
-              <input type="hidden" name="from_name" value="Neander Cyber Solutions" />
+              <input type="hidden" name="subject" value="New IT support request from SecureBridge IT Solutions website" />
+              <input type="hidden" name="from_name" value={businessName} />
               <input type="checkbox" name="botcheck" className="hidden" tabIndex="-1" autoComplete="off" />
               <div className="grid gap-4 sm:grid-cols-2">
                 <label className="grid gap-2 text-sm font-bold">
@@ -561,7 +562,7 @@ function App() {
 
       <footer className="border-t border-line bg-white py-8">
         <div className="section-shell flex flex-col gap-3 text-sm text-steel sm:flex-row sm:items-center sm:justify-between">
-          <p>&copy; {new Date().getFullYear()} Neander Cyber Solutions. Cybersecurity & IT Consulting.</p>
+          <p>&copy; {new Date().getFullYear()} {businessName}. Cybersecurity & IT Consulting.</p>
           <p className="flex items-center gap-2">
             <CloudCog size={17} className="text-electric" />
             Practical technology support, explained clearly.
