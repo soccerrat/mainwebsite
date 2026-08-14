@@ -20,4 +20,4 @@ npm run build
 - Main website content: `src/App.jsx`
 - Brand colors and Tailwind theme: `tailwind.config.js`
 - Global CSS helpers: `src/index.css`
-- Profile photo: `public/profile-photo.jpg`
+- Hero visual: `public/operations-grid.png`

@@ -20,6 +20,7 @@ html {
 body {
   margin: 0;
   min-width: 320px;
+  background: #f5f7fb;
 }
 
 ::selection {
@@ -46,8 +47,22 @@ body {
   mask-image: linear-gradient(to bottom, black, transparent 78%);
 }
 
+.page-grid {
+  background-color: #f5f7fb;
+  background-image:
+    linear-gradient(rgba(7, 17, 31, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(7, 17, 31, 0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
 .card-lift {
   @apply transition duration-300 hover:-translate-y-1 hover:border-electric/40 hover:shadow-soft;
+}
+
+textarea,
+input,
+select {
+  min-width: 0;
 }
 
 .reveal-in {
