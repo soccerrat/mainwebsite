@@ -147,7 +147,7 @@ const contactInfo = {
   linkedin: 'https://linked.com/neanderdevil/'
 }
 
-const businessName = 'SecureBridge IT Solutions'
+const businessName = 'VeritaGrid IT Solutions'
 const web3FormsAccessKey = '02b17a67-ee5c-41b5-ba19-eb527dcd28cb'
 
 function HeroSignalPanel() {
@@ -164,7 +164,7 @@ function HeroSignalPanel() {
         <div className="flex items-center justify-between border-b border-white/15 pb-4">
           <div className="flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-slate-200">
             <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_14px_rgba(52,211,153,0.8)]" />
-            SecureBridge signal
+            VeritaGrid signal
           </div>
           <Activity size={18} className="text-electric" />
         </div>
@@ -236,12 +236,12 @@ function App() {
 
       setFormStatus({
         type: 'error',
-        message: result.message || 'Your request could not be sent. Please email SecureBridge directly.'
+        message: result.message || 'Your request could not be sent. Please email VeritaGrid directly.'
       })
     } catch {
       setFormStatus({
         type: 'error',
-        message: 'Your request could not be sent. Please email SecureBridge directly.'
+        message: 'Your request could not be sent. Please email VeritaGrid directly.'
       })
     }
   }
@@ -319,7 +319,7 @@ function App() {
                 Better operations.
               </h1>
               <p className="mt-7 max-w-xl text-lg leading-8 text-slate-300 sm:text-xl">
-                Practical technology support for homes, churches, nonprofits, and small businesses. SecureBridge brings calm troubleshooting, stronger security, and a clearer path forward.
+                Practical technology support for homes, churches, nonprofits, and small businesses. VeritaGrid brings calm troubleshooting, stronger security, and a clearer path forward.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <a
@@ -482,12 +482,12 @@ function App() {
             </div>
 
             <div>
-              <p className="eyebrow">About SecureBridge</p>
+              <p className="eyebrow">About VeritaGrid</p>
               <h2 className="mt-4 max-w-3xl font-display text-4xl font-black leading-tight sm:text-5xl">
                 Technical capability, translated for people.
               </h2>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-steel">
-                SecureBridge IT Solutions provides practical cybersecurity and IT support for the places where technology has to work: homes, community organizations, churches, nonprofits, and local businesses.
+                VeritaGrid IT Solutions provides practical cybersecurity and IT support for the places where technology has to work: homes, community organizations, churches, nonprofits, and local businesses.
               </p>
               <p className="mt-5 max-w-2xl text-lg leading-8 text-steel">
                 Led by Neander Devil, the practice combines CompTIA A+ and Security+ credentials, a cybersecurity graduate background, and hands-on experience solving real technical problems. The result is support that is professional enough for business and approachable enough for everyday technology.
@@ -542,7 +542,7 @@ function App() {
 
               <form onSubmit={handleContactSubmit} className="rounded border border-line bg-cloud p-5 sm:p-6">
                 <input type="hidden" name="access_key" value={web3FormsAccessKey} />
-                <input type="hidden" name="subject" value="New support request from SecureBridge IT Solutions website" />
+                <input type="hidden" name="subject" value="New support request from VeritaGrid IT Solutions website" />
                 <input type="hidden" name="from_name" value={businessName} />
                 <input type="checkbox" name="botcheck" className="hidden" tabIndex="-1" autoComplete="off" />
                 <div className="grid gap-4 sm:grid-cols-2">
