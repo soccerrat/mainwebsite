@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3.75in" height="2.25in" viewBox="0 0 1125 675" role="img" aria-labelledby="title desc">
+  <title id="title">VeritaGrid IT Solutions business card back</title>
+  <desc id="desc">Contact side for Neander Devil with phone, email, website, a website QR code, and benefits of VeritaGrid technology support.</desc>
+
+  <!-- 0.125 inch bleed around a 3.5 x 2 inch finished card -->
+  <rect width="1125" height="675" fill="#f6f8fc"/>
+  <rect width="326" height="675" fill="#071322"/>
+  <rect x="326" width="9" height="675" fill="#2b9cff"/>
+
+  <g opacity="0.13" fill="none" stroke="#a9d9ff" stroke-width="1">
+    <path d="M66 0v675M196 0v675"/>
+    <path d="M0 100h326M0 230h326M0 360h326M0 490h326M0 620h326"/>
+  </g>
+
+  <g transform="translate(79 48) scale(.72)">
+    <path d="M60 8 104 31v33c0 24-15 40-44 49C31 104 16 88 16 64V31L60 8Z" fill="none" stroke="#ffffff" stroke-width="9" stroke-linejoin="round"/>
+    <path d="M60 8 104 31v33c0 24-15 40-44 49" fill="none" stroke="#2b9cff" stroke-width="9" stroke-linejoin="round"/>
+    <path d="m37 55 20 20 30-34" fill="none" stroke="#ffffff" stroke-width="10"/><path d="m57 75 30-34" fill="none" stroke="#2b9cff" stroke-width="10"/>
+  </g>
+  <text x="72" y="180" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700">Verita<tspan fill="#2b9cff">Grid</tspan></text>
+  <text x="74" y="209" fill="#bfe7ff" font-family="Courier New, monospace" font-size="12" font-weight="700" letter-spacing="1.4">IT &amp; CYBERSECURITY CONSULTING</text>
+
+  <rect x="78" y="278" width="172" height="172" rx="8" fill="#ffffff"/>
+  <image href="veritagrid-contact-qr.svg" x="88" y="288" width="152" height="152"/>
+  <text x="164" y="482" text-anchor="middle" fill="#bfe7ff" font-family="Courier New, monospace" font-size="14" font-weight="700" letter-spacing="0.9">SCAN TO REQUEST SUPPORT</text>
+  <text x="164" y="514" text-anchor="middle" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700">veritagrid.com</text>
+
+  <text x="392" y="91" fill="#2b82d5" font-family="Courier New, monospace" font-size="16" font-weight="700" letter-spacing="1.6">FOUNDER / PRINCIPAL CONSULTANT</text>
+  <text x="392" y="143" fill="#071322" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700">Neander Devil</text>
+  <text x="394" y="178" fill="#52637a" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700">Cybersecurity + IT Support</text>
+  <line x1="392" y1="214" x2="1053" y2="214" stroke="#d8e1ed" stroke-width="2"/>
+
+  <g fill="#2b82d5" font-family="Courier New, monospace" font-size="15" font-weight="700">
+    <text x="392" y="265">CALL</text>
+    <text x="392" y="311">EMAIL</text>
+    <text x="392" y="357">WEB</text>
+  </g>
+  <g fill="#071322" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700">
+    <text x="492" y="265">(516)-725-6490</text>
+    <text x="492" y="311">williamcartwright427@gmail.com</text>
+    <text x="492" y="357">veritagrid.com</text>
+  </g>
+
+  <line x1="392" y1="394" x2="1053" y2="394" stroke="#d8e1ed" stroke-width="2"/>
+  <text x="392" y="438" fill="#52637a" font-family="Courier New, monospace" font-size="15" font-weight="700" letter-spacing="1.3">SUPPORT BUILT AROUND REAL NEEDS</text>
+  <g fill="#071322" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700">
+    <text x="417" y="480">On-site and remote troubleshooting</text>
+    <text x="417" y="520">Security-minded recommendations</text>
+    <text x="417" y="560">Clear explanations and practical next steps</text>
+  </g>
+  <g fill="#2b9cff">
+    <circle cx="396" cy="474" r="5"/>
+    <circle cx="396" cy="514" r="5"/>
+    <circle cx="396" cy="554" r="5"/>
+  </g>
+  <text x="1053" y="620" text-anchor="end" fill="#2b82d5" font-family="Courier New, monospace" font-size="15" font-weight="700" letter-spacing="1.1">NOT SURE WHAT IS WRONG? START WITH A CONVERSATION.</text>
+</svg>

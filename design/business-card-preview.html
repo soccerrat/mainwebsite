@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VeritaGrid IT Solutions - Business Card Proof</title>
+    <style>
+      :root { color: #071322; background: #e9eef5; font-family: Arial, Helvetica, sans-serif; }
+      * { box-sizing: border-box; }
+      body { margin: 0; min-width: 320px; padding: 48px 24px; }
+      main { width: min(100%, 1120px); margin: 0 auto; }
+      h1 { margin: 0; font-size: clamp(28px, 4vw, 48px); line-height: 1.05; letter-spacing: 0; }
+      p { margin: 12px 0 0; color: #52637a; line-height: 1.5; }
+      .intro { margin-bottom: 34px; }
+      .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+      figure { margin: 0; }
+      .card { width: 100%; aspect-ratio: 3.5 / 2; overflow: hidden; background: #fff; box-shadow: 0 20px 55px rgba(7, 17, 31, 0.2); }
+      .card img { display: block; width: 100%; height: 100%; }
+      figcaption { margin-top: 10px; color: #52637a; font-family: "Courier New", monospace; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+      @media (max-width: 760px) { body { padding: 32px 16px; } .cards { grid-template-columns: 1fr; } }
+      @media print {
+        @page { size: 3.75in 2.25in; margin: 0; }
+        body { padding: 0; background: #fff; }
+        .intro, figcaption { display: none; }
+        .cards { display: block; }
+        figure { break-after: page; }
+        .card { width: 3.75in; height: 2.25in; box-shadow: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="intro">
+        <h1>VeritaGrid IT Solutions</h1>
+        <p>Service-forward business card proof with 0.125 inch bleed and a contact QR code.</p>
+      </div>
+      <section class="cards" aria-label="Business card faces">
+        <figure>
+          <div class="card"><img src="business-card-front.svg" alt="Service side of the VeritaGrid business card" /></div>
+          <figcaption>Front - services</figcaption>
+        </figure>
+        <figure>
+          <div class="card"><img src="business-card-back.svg" alt="Contact side of the VeritaGrid business card" /></div>
+          <figcaption>Back - contact and QR</figcaption>
+        </figure>
+      </section>
+    </main>
+  </body>
+</html>

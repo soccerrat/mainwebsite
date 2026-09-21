@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="title desc">
+  <title id="title">VeritaGrid shield mark</title>
+  <desc id="desc">A connected grid inside a shield with a verification check.</desc>
+  <path d="M60 8 104 31v33c0 24-15 40-44 49C31 104 16 88 16 64V31L60 8Z" fill="none" stroke="#ffffff" stroke-width="9" stroke-linejoin="round"/>
+  <path d="M60 8 104 31v33c0 24-15 40-44 49" fill="none" stroke="#2b9cff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="none" stroke="#7bc8ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m35 43 25-14 25 14v29L60 88 35 72Z"/>
+    <path d="M60 29v59M35 43l50 29M85 43 47 80"/>
+  </g>
+  <g fill="#07111f" stroke="#2b9cff" stroke-width="3">
+    <circle cx="35" cy="43" r="5"/>
+    <circle cx="60" cy="29" r="5"/>
+    <circle cx="85" cy="43" r="5"/>
+    <circle cx="60" cy="88" r="5"/>
+  </g>
+  <path d="m37 55 20 20 30-34" fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="square" stroke-linejoin="miter"/>
+  <path d="m57 75 30-34" fill="none" stroke="#2b9cff" stroke-width="10" stroke-linecap="square"/>
+</svg>

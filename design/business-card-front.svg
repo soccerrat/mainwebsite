@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3.75in" height="2.25in" viewBox="0 0 1125 675" role="img" aria-labelledby="title desc">
+  <title id="title">VeritaGrid IT Solutions business card front</title>
+  <desc id="desc">Service-forward VeritaGrid business card advertising cybersecurity, computer, network, account, backup, business, and church technology support.</desc>
+
+  <!-- 0.125 inch bleed around a 3.5 x 2 inch finished card -->
+  <rect width="1125" height="675" fill="#071322"/>
+  <rect width="1125" height="10" fill="#2b9cff"/>
+
+  <g transform="translate(73 53) scale(.8)">
+    <path d="M60 8 104 31v33c0 24-15 40-44 49C31 104 16 88 16 64V31L60 8Z" fill="none" stroke="#ffffff" stroke-width="9" stroke-linejoin="round"/>
+    <path d="M60 8 104 31v33c0 24-15 40-44 49" fill="none" stroke="#2b9cff" stroke-width="9" stroke-linejoin="round"/>
+    <g fill="none" stroke="#7bc8ff" stroke-width="2.5"><path d="m35 43 25-14 25 14v29L60 88 35 72Z"/><path d="M60 29v59M35 43l50 29M85 43 47 80"/></g>
+    <g fill="#071322" stroke="#2b9cff" stroke-width="3"><circle cx="35" cy="43" r="5"/><circle cx="60" cy="29" r="5"/><circle cx="85" cy="43" r="5"/><circle cx="60" cy="88" r="5"/></g>
+    <path d="m37 55 20 20 30-34" fill="none" stroke="#ffffff" stroke-width="10"/><path d="m57 75 30-34" fill="none" stroke="#2b9cff" stroke-width="10"/>
+  </g>
+  <text x="190" y="111" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="46" font-weight="700">Verita<tspan fill="#2b9cff">Grid</tspan></text>
+  <text x="192" y="143" fill="#bfe7ff" font-family="Courier New, monospace" font-size="14" font-weight="700" letter-spacing="2.2">IT &amp; CYBERSECURITY CONSULTING</text>
+  <text x="1041" y="103" text-anchor="end" fill="#ffffff" font-family="Courier New, monospace" font-size="20" font-weight="700" letter-spacing="1.8">VERITAGRID.COM</text>
+  <text x="1041" y="135" text-anchor="end" fill="#bfe7ff" font-family="Courier New, monospace" font-size="15" font-weight="700" letter-spacing="1.1">DEPENDABLE SYSTEMS / HUMAN SUPPORT</text>
+
+  <line x1="84" y1="194" x2="1041" y2="194" stroke="#2b9cff" stroke-width="2"/>
+  <text x="84" y="250" fill="#2b9cff" font-family="Courier New, monospace" font-size="16" font-weight="700" letter-spacing="2">PRACTICAL TECHNOLOGY SUPPORT</text>
+  <text x="84" y="297" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">Cybersecurity and IT support</text>
+  <text x="84" y="338" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">for the technology you rely on.</text>
+
+  <text x="84" y="389" fill="#bfe7ff" font-family="Courier New, monospace" font-size="15" font-weight="700" letter-spacing="1.7">CORE SERVICES</text>
+  <text x="1041" y="389" text-anchor="end" fill="#71859c" font-family="Courier New, monospace" font-size="14" font-weight="700" letter-spacing="1.1">SECURITY / SUPPORT / GUIDANCE</text>
+
+  <g opacity="0.16" stroke="#bfe7ff" stroke-width="1">
+    <line x1="84" y1="418" x2="1041" y2="418"/>
+    <line x1="84" y1="463" x2="1041" y2="463"/>
+    <line x1="84" y1="508" x2="1041" y2="508"/>
+    <line x1="84" y1="553" x2="1041" y2="553"/>
+    <line x1="84" y1="598" x2="1041" y2="598"/>
+  </g>
+  <line x1="562" y1="408" x2="562" y2="588" stroke="#2b9cff" stroke-width="3"/>
+  <g fill="#2b9cff">
+    <circle cx="562" cy="440" r="5"/>
+    <circle cx="562" cy="485" r="5"/>
+    <circle cx="562" cy="530" r="5"/>
+    <circle cx="562" cy="575" r="5"/>
+  </g>
+
+  <g fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700">
+    <text x="84" y="447">Computer troubleshooting &amp; setup</text>
+    <text x="84" y="492">Wi-Fi &amp; network support</text>
+    <text x="84" y="537">Account, email &amp; password security</text>
+    <text x="84" y="582">Data backup planning</text>
+    <text x="600" y="447">Cybersecurity checkups</text>
+    <text x="600" y="492">Small business IT support</text>
+    <text x="600" y="537">Microsoft 365 + Google Workspace</text>
+    <text x="600" y="582">Church livestream &amp; AV support</text>
+  </g>
+
+  <text x="84" y="635" fill="#bfe7ff" font-family="Courier New, monospace" font-size="17" font-weight="700" letter-spacing="1.1">HOMES / SMALL BUSINESSES / CHURCHES / NONPROFITS</text>
+</svg>

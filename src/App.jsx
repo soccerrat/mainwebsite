@@ -1,625 +1,190 @@
 import {
-  Activity,
-  ArrowRight,
-  ArrowUpRight,
-  BadgeCheck,
-  BriefcaseBusiness,
-  CheckCircle2,
-  Church,
-  CloudCog,
-  HardDrive,
-  Laptop,
-  Linkedin,
-  LockKeyhole,
-  Mail,
-  Menu,
-  MessageCircle,
-  Network,
-  Phone,
-  ShieldCheck,
-  Sparkles,
-  Wifi,
-  Wrench,
-  X
+  ArrowRight, ArrowUpRight, BadgeCheck, BriefcaseBusiness, Check, ChevronDown,
+  Church, Code2, Cpu, Globe2, HardDrive, Headphones, Laptop, Linkedin,
+  Mail, Menu, MonitorCog, Phone, Printer, Router, ShieldCheck, Smartphone,
+  Wifi, Wrench, X
 } from 'lucide-react'
-import { useState } from 'react'
-
-const navItems = [
-  { href: '#services', label: 'Services' },
-  { href: '#approach', label: 'Approach' },
-  { href: '#clients', label: 'Who we support' },
-  { href: '#about', label: 'About' },
-  { href: '#contact', label: 'Contact' }
-]
-
-const clientTypes = [
-  {
-    title: 'Homes & Families',
-    text: 'Patient help with slow computers, new device setup, Wi-Fi problems, account protection, and backup planning.',
-    icon: Laptop,
-    tag: 'Personal technology'
-  },
-  {
-    title: 'Small Businesses',
-    text: 'Reliable support for business email, cloud tools, devices, networks, security basics, and day-to-day operations.',
-    icon: BriefcaseBusiness,
-    tag: 'Business continuity'
-  },
-  {
-    title: 'Churches & Nonprofits',
-    text: 'Practical help with office technology, Wi-Fi, livestream workflows, OBS, AV troubleshooting, and account safety.',
-    icon: Church,
-    tag: 'Mission-critical support'
-  }
-]
-
-const services = [
-  {
-    title: 'Computer Troubleshooting & Setup',
-    text: 'Fix slow devices, set up new computers, resolve software issues, and turn confusing alerts into clear next steps.',
-    icon: Laptop
-  },
-  {
-    title: 'Wi-Fi & Network Support',
-    text: 'Improve coverage, secure router settings, troubleshoot drops, and support home or office connectivity.',
-    icon: Wifi
-  },
-  {
-    title: 'Account, Email & Password Security',
-    text: 'Set up MFA, strengthen passwords, review recovery settings, reduce phishing risk, and protect important accounts.',
-    icon: LockKeyhole
-  },
-  {
-    title: 'Small Business IT Support',
-    text: 'Support Microsoft 365, Google Workspace, business email, devices, documentation, and practical tech decisions.',
-    icon: BriefcaseBusiness
-  },
-  {
-    title: 'Cybersecurity Checkups',
-    text: 'Review common risks, identify weak spots, explain priorities, and create a practical protection plan.',
-    icon: ShieldCheck
-  },
-  {
-    title: 'Data Backup Planning',
-    text: 'Build a simple backup strategy for files, business records, photos, church media, and other important data.',
-    icon: HardDrive
-  },
-  {
-    title: 'Church Livestream & AV Support',
-    text: 'Support OBS, cameras, audio routing, presentation devices, streaming workflows, and Sunday-ready troubleshooting.',
-    icon: Church
-  },
-  {
-    title: 'Technology Roadmaps',
-    text: 'Translate technology needs into focused recommendations, realistic priorities, and a plan that fits the budget.',
-    icon: Network
-  }
-]
-
-const processSteps = [
-  {
-    title: 'Listen',
-    text: 'Start with the real problem, the people affected, and what a successful fix needs to look like.',
-    icon: MessageCircle
-  },
-  {
-    title: 'Stabilize',
-    text: 'Resolve the immediate issue and explain what is happening in plain language.',
-    icon: Wrench
-  },
-  {
-    title: 'Secure',
-    text: 'Tighten accounts, settings, backups, and risky habits where security matters most.',
-    icon: ShieldCheck
-  },
-  {
-    title: 'Strengthen',
-    text: 'Leave behind clear next steps, useful documentation, and a support path for what comes next.',
-    icon: Sparkles
-  }
-]
-
-const trustPoints = [
-  'CompTIA A+',
-  'CompTIA Security+',
-  'Cybersecurity graduate background',
-  'Security-first decisions',
-  'Clear documentation',
-  'Local, practical support'
-]
-
-const contactOptions = [
-  'Computer Troubleshooting & Setup',
-  'Wi-Fi & Network Support',
-  'Account, Email & Password Security',
-  'Small Business IT Support',
-  'Cybersecurity Checkup',
-  'Data Backup Planning',
-  'Church Livestream & AV Support',
-  'Technology Roadmap',
-  'Not sure yet'
-]
-
-const contactInfo = {
-  email: 'williamcartwright427@gmail.com',
-  phoneDisplay: '(516)-725-6490',
-  phoneHref: '+15167256490',
-  linkedin: 'https://linked.com/neanderdevil/'
-}
+import { useEffect, useState } from 'react'
 
 const businessName = 'VeritaGrid IT Solutions'
 const web3FormsAccessKey = '02b17a67-ee5c-41b5-ba19-eb527dcd28cb'
+const contactInfo = {
+  email: 'williamcartwright427@gmail.com',
+  phoneDisplay: '(516) 725-6490',
+  phoneHref: '+15167256490',
+  linkedin: 'https://www.linkedin.com/in/neanderdevil/'
+}
+const routes = { '/': 'Home', '/services': 'Services', '/business-it': 'Business IT', '/websites': 'Websites', '/about': 'About', '/contact': 'Contact' }
 
-function HeroSignalPanel() {
-  return (
-    <div className="relative isolate min-h-[480px] overflow-hidden rounded border border-white/15 bg-ink shadow-electric lg:min-h-[540px]">
-      <img
-        src="/operations-grid.png"
-        alt=""
-        aria-hidden="true"
-        className="absolute inset-0 h-full w-full object-cover opacity-80"
-      />
-      <div className="absolute inset-0 bg-navy/40" />
-      <div className="relative flex h-full min-h-[480px] flex-col justify-between p-5 sm:p-7 lg:min-h-[540px]">
-        <div className="flex items-center justify-between border-b border-white/15 pb-4">
-          <div className="flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-slate-200">
-            <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_14px_rgba(52,211,153,0.8)]" />
-            VeritaGrid signal
-          </div>
-          <Activity size={18} className="text-electric" />
-        </div>
+const serviceGroups = [
+  { id: 'home', short: 'Home IT', title: 'Everyday technology, working properly again.', text: 'Hands-on help for the computers, connections, devices, and accounts your household depends on.', icon: Laptop, items: ['Computer troubleshooting', 'Printer and scanner help', 'Wi-Fi and router support', 'New device setup', 'Data transfer and backup', 'Account security'], action: 'Get home tech help' },
+  { id: 'business', short: 'Business IT', title: 'Practical support for the systems behind the work.', text: 'Responsive technology help for small teams that need dependable tools without a large internal IT department.', icon: BriefcaseBusiness, items: ['Microsoft 365 and Google Workspace', 'Business email setup', 'Employee device onboarding', 'Office Wi-Fi and networking', 'Documentation and support', 'Backup and security planning'], action: 'Discuss business support' },
+  { id: 'web', short: 'Websites', title: 'A professional website, built and maintained for you.', text: 'Modern sites for local businesses and community organizations, from first idea through launch and ongoing care.', icon: Globe2, items: ['New business websites', 'Website redesigns', 'Mobile optimization', 'Contact and quote forms', 'Domain and email setup', 'Hosting and maintenance'], action: 'Plan a website' },
+  { id: 'security', short: 'Security', title: 'Stronger protection without unnecessary complexity.', text: 'Security is built into every recommendation, with focused services for accounts, devices, networks, and data.', icon: ShieldCheck, items: ['MFA and password managers', 'Account recovery reviews', 'Malware cleanup', 'Business email protection', 'Router security', 'Cybersecurity checkups'], action: 'Request a security checkup' }
+]
 
-        <div className="grid gap-3 sm:grid-cols-2">
-          <div className="rounded border border-white/15 bg-ink/70 p-4 backdrop-blur">
-            <p className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-slate-400">Security posture</p>
-            <p className="mt-2 font-display text-2xl font-bold text-white">Clearer</p>
-            <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-white/15">
-              <div className="h-full w-[78%] rounded-full bg-electric" />
-            </div>
-            <p className="mt-2 text-xs text-slate-300">Priorities mapped to action</p>
-          </div>
-          <div className="rounded border border-white/15 bg-ink/70 p-4 backdrop-blur">
-            <p className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-slate-400">Support mode</p>
-            <p className="mt-2 font-display text-2xl font-bold text-white">Human</p>
-            <p className="mt-4 text-xs leading-5 text-slate-300">Technical help with context, care, and clear communication.</p>
-          </div>
-        </div>
+const supportServices = [
+  { icon: MonitorCog, title: 'Computer Repair & Maintenance', text: 'Slow systems, crashes, updates, cleanup, upgrades, and everyday troubleshooting.' },
+  { icon: Printer, title: 'Printer & Peripheral Support', text: 'Setup and troubleshooting for printers, scanners, monitors, and accessories.' },
+  { icon: Wifi, title: 'Wi-Fi & Network Help', text: 'Coverage, connectivity, router configuration, and reliable home or office networking.' },
+  { icon: Smartphone, title: 'Device Setup & Transfer', text: 'New phones, tablets, computers, data migration, synchronization, and account setup.' },
+  { icon: Cpu, title: 'Custom PCs & Upgrades', text: 'Purpose-built systems, component selection, memory and storage upgrades, and optimization.' },
+  { icon: HardDrive, title: 'Backup & Data Planning', text: 'Clear backup routines for files, photos, business records, and important organizational data.' }
+]
+const businessServices = [
+  ['Managed essentials', 'Day-to-day support for devices, users, email, cloud tools, and the small issues that interrupt work.'],
+  ['Workspace setup', 'Microsoft 365, Google Workspace, business email, shared files, permissions, and employee onboarding.'],
+  ['Reliable networks', 'Office Wi-Fi, router configuration, device connectivity, guest access, and network documentation.'],
+  ['Security built in', 'MFA, account recovery, backups, phishing awareness, endpoint basics, and practical risk reduction.']
+]
+const websiteFeatures = [
+  { icon: Code2, title: 'Designed around the business', text: 'Clear messaging, thoughtful structure, and a visual identity shaped around the customers you want to reach.' },
+  { icon: Smartphone, title: 'Built for every screen', text: 'Responsive layouts that stay polished and easy to use on phones, tablets, and desktops.' },
+  { icon: Globe2, title: 'Ready to be found', text: 'Search-friendly structure, useful page metadata, local service content, and Google Business Profile guidance.' },
+  { icon: ShieldCheck, title: 'Maintained and protected', text: 'Hosting guidance, secure forms, backups, technical upkeep, and an ongoing support option after launch.' }
+]
+const contactOptions = ['Computer repair or troubleshooting', 'Printer or device setup', 'Wi-Fi or network support', 'Small business IT support', 'Website design or redesign', 'Website maintenance', 'Cybersecurity or account protection', 'Custom PC or computer upgrade', 'Not sure yet']
 
-        <div className="rounded border border-electric/40 bg-navy/85 p-5 backdrop-blur">
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              <p className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-electric">The bridge</p>
-              <p className="mt-2 max-w-xs font-display text-xl font-bold leading-tight text-white">From technology friction to dependable operations.</p>
-            </div>
-            <ArrowUpRight className="shrink-0 text-electric" size={22} />
-          </div>
-          <div className="mt-5 grid grid-cols-4 gap-2">
-            {['People', 'Devices', 'Accounts', 'Data'].map((label, index) => (
-              <div key={label} className="border-t border-white/20 pt-2">
-                <p className="text-[10px] font-bold text-slate-300">0{index + 1}</p>
-                <p className="mt-1 text-xs font-bold text-white">{label}</p>
-              </div>
-            ))}
-          </div>
+function normalizePath(path) {
+  const clean = path.replace(/\/$/, '') || '/'
+  return routes[clean] ? clean : '/'
+}
+
+function BrandLockup({ compact = false, inverse = true }) {
+  return <span className="flex min-w-0 items-center gap-3">
+    <img src={inverse ? '/veritagrid-mark-inverse.svg' : '/veritagrid-mark.svg'} alt="" className={compact ? 'h-10 w-10 shrink-0' : 'h-12 w-12 shrink-0'} />
+    <span className="min-w-0 leading-none">
+      <span className={`block whitespace-nowrap font-display font-black ${compact ? 'text-base' : 'text-lg'}`}>Verita<span className="text-electric">Grid</span></span>
+      <span className={`mt-1.5 whitespace-nowrap font-mono font-bold uppercase ${inverse ? 'text-slate-400' : 'text-steel'} ${compact ? 'hidden text-[8px] tracking-[0.12em] sm:block' : 'block text-[9px] tracking-[0.16em]'}`}>IT support · websites · security</span>
+    </span>
+  </span>
+}
+
+function Link({ to, navigate, children, className = '', onClick }) {
+  return <a href={to} className={className} onClick={(event) => { event.preventDefault(); navigate(to); onClick?.() }}>{children}</a>
+}
+
+function Header({ page, navigate }) {
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const [solutionsOpen, setSolutionsOpen] = useState(false)
+  const closeAll = () => { setMobileOpen(false); setSolutionsOpen(false) }
+  return <header className="sticky top-0 z-50 border-b border-white/10 bg-ink/95 text-white backdrop-blur-xl">
+    <nav className="section-shell flex h-[4.75rem] items-center justify-between">
+      <Link to="/" navigate={navigate} className="focus-ring rounded" onClick={closeAll}><BrandLockup compact /></Link>
+      <div className="hidden items-center gap-1 lg:flex">
+        <div className="relative" onMouseLeave={() => setSolutionsOpen(false)}>
+          <button type="button" onMouseEnter={() => setSolutionsOpen(true)} onClick={() => setSolutionsOpen((open) => !open)} className="focus-ring inline-flex items-center gap-1.5 rounded px-4 py-3 text-sm font-bold text-slate-300 transition hover:text-white" aria-expanded={solutionsOpen}>Solutions <ChevronDown size={15} className={`transition ${solutionsOpen ? 'rotate-180' : ''}`} /></button>
+          {solutionsOpen && <div className="absolute left-0 top-full w-[620px] pt-3"><div className="overflow-hidden border border-white/15 bg-[#0c1a2c] shadow-2xl">
+            <div className="grid grid-cols-2">{serviceGroups.map((group) => {
+              const Icon = group.icon
+              const target = group.id === 'web' ? '/websites' : group.id === 'business' ? '/business-it' : '/services'
+              return <Link key={group.id} to={target} navigate={navigate} onClick={closeAll} className="group flex gap-4 border-b border-r border-white/10 p-5 transition hover:bg-white/[0.06]"><Icon size={20} className="mt-0.5 shrink-0 text-electric" /><span><span className="block text-sm font-black text-white">{group.short}</span><span className="mt-1 block text-xs leading-5 text-slate-400">{group.text}</span></span></Link>
+            })}</div>
+            <div className="flex items-center justify-between bg-electric px-5 py-3 text-sm font-bold text-white"><span>Not sure where to start?</span><Link to="/contact" navigate={navigate} onClick={closeAll} className="focus-ring inline-flex items-center gap-2 rounded">Describe the problem <ArrowRight size={16} /></Link></div>
+          </div></div>}
         </div>
+        {[['/business-it', 'Business IT'], ['/websites', 'Websites'], ['/about', 'About']].map(([to, label]) => <Link key={to} to={to} navigate={navigate} className={`focus-ring rounded px-4 py-3 text-sm font-bold transition ${page === to ? 'text-white' : 'text-slate-300 hover:text-white'}`}>{label}</Link>)}
+        <Link to="/contact" navigate={navigate} className="focus-ring ml-3 inline-flex items-center gap-2 rounded bg-electric px-4 py-2.5 text-sm font-black text-white transition hover:bg-blue-400">Get support <ArrowUpRight size={16} /></Link>
       </div>
+      <button type="button" onClick={() => setMobileOpen((open) => !open)} className="focus-ring grid h-11 w-11 place-items-center rounded border border-white/15 lg:hidden" aria-label={mobileOpen ? 'Close navigation' : 'Open navigation'}>{mobileOpen ? <X size={21} /> : <Menu size={21} />}</button>
+    </nav>
+    {mobileOpen && <div className="border-t border-white/10 bg-ink lg:hidden"><div className="section-shell grid py-4">{[['/', 'Home'], ['/services', 'All services'], ['/business-it', 'Business IT'], ['/websites', 'Websites'], ['/about', 'About'], ['/contact', 'Contact']].map(([to, label]) => <Link key={to} to={to} navigate={navigate} onClick={closeAll} className="focus-ring flex items-center justify-between border-b border-white/10 py-4 text-sm font-bold text-white">{label}<ArrowRight size={16} className="text-electric" /></Link>)}</div></div>}
+  </header>
+}
+
+function ButtonLink({ to, navigate, children, secondary = false }) {
+  return <Link to={to} navigate={navigate} className={`focus-ring inline-flex min-h-12 items-center justify-center gap-2 rounded px-5 py-3 text-sm font-black transition ${secondary ? 'border border-current/20 hover:bg-white/10' : 'bg-electric text-white shadow-[0_14px_36px_rgba(31,143,255,.28)] hover:bg-blue-400'}`}>{children}</Link>
+}
+
+function PageIntro({ eyebrow, title, text }) {
+  return <section className="relative overflow-hidden bg-navy pb-20 pt-16 text-white sm:pb-24 sm:pt-20">
+    <div className="absolute inset-0 opacity-25"><img src="/operations-grid.png" alt="" className="h-full w-full object-cover" /></div>
+    <div className="section-shell relative"><p className="eyebrow">{eyebrow}</p><h1 className="mt-5 max-w-4xl font-display text-4xl font-black leading-tight sm:text-6xl">{title}</h1><p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">{text}</p></div>
+  </section>
+}
+
+function ServiceMatrix({ navigate, compact = false }) {
+  const [active, setActive] = useState('home')
+  const selected = serviceGroups.find((group) => group.id === active)
+  const Icon = selected.icon
+  return <div className="service-matrix border border-line bg-white shadow-soft">
+    <div className="grid border-b border-line sm:grid-cols-4" role="tablist" aria-label="Service categories">{serviceGroups.map((group) => {
+      const TabIcon = group.icon
+      return <button key={group.id} type="button" role="tab" aria-selected={active === group.id} onClick={() => setActive(group.id)} className={`focus-ring flex min-h-16 items-center gap-3 border-b border-line px-5 py-4 text-left text-sm font-black transition sm:border-b-0 sm:border-r ${active === group.id ? 'bg-navy text-white' : 'bg-white text-steel hover:bg-cloud hover:text-ink'}`}><TabIcon size={19} className={active === group.id ? 'text-electric' : ''} />{group.short}</button>
+    })}</div>
+    <div className={`grid ${compact ? 'lg:grid-cols-[.9fr_1.1fr]' : 'lg:grid-cols-[1.05fr_.95fr]'}`}>
+      <div className="p-6 sm:p-9 lg:p-11"><div className="grid h-12 w-12 place-items-center rounded bg-blue-50 text-electric"><Icon size={24} /></div><h3 className="mt-6 max-w-xl font-display text-3xl font-black leading-tight sm:text-4xl">{selected.title}</h3><p className="mt-4 max-w-xl text-base leading-7 text-steel">{selected.text}</p><Link to="/contact" navigate={navigate} className="focus-ring mt-7 inline-flex items-center gap-2 rounded text-sm font-black text-ink transition hover:text-electric">{selected.action}<ArrowRight size={17} /></Link></div>
+      <div className="grid content-center gap-px bg-line p-px sm:grid-cols-2 lg:grid-cols-1">{selected.items.map((item) => <div key={item} className="flex items-center gap-3 bg-cloud px-6 py-4 text-sm font-bold text-ink"><Check size={17} className="shrink-0 text-electric" />{item}</div>)}</div>
     </div>
-  )
+  </div>
+}
+
+function ConversionBand({ navigate, title = 'Start with the problem. The right service can follow.' }) {
+  return <section className="bg-electric py-10 text-white"><div className="section-shell flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between"><div><p className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-blue-100">Local support · Elmont and surrounding communities</p><h2 className="mt-2 max-w-2xl font-display text-2xl font-black sm:text-3xl">{title}</h2></div><Link to="/contact" navigate={navigate} className="focus-ring inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded bg-white px-5 py-3 text-sm font-black text-ink transition hover:bg-cloud">Request support <ArrowRight size={17} /></Link></div></section>
+}
+
+function HomePage({ navigate }) {
+  return <>
+    <section className="hero-stage relative isolate overflow-hidden bg-ink text-white">
+      <img src="/operations-grid.png" alt="" className="absolute inset-0 h-full w-full object-cover opacity-55" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,17,31,.98)_0%,rgba(7,17,31,.88)_48%,rgba(7,17,31,.42)_100%)]" />
+      <div className="hero-scan absolute inset-y-0 left-[62%] hidden w-px bg-electric/60 lg:block" />
+      <div className="section-shell relative flex min-h-[720px] flex-col justify-center pb-40 pt-20 sm:min-h-[760px] lg:pb-44">
+        <div className="max-w-4xl reveal-in"><div className="inline-flex items-center gap-3 border border-white/15 bg-white/[0.05] px-3 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-slate-300 backdrop-blur"><span className="h-2 w-2 rounded-full bg-mint shadow-[0_0_14px_rgba(34,211,166,.8)]" />Serving Elmont and surrounding communities</div><h1 className="mt-7 max-w-4xl font-display text-[2.75rem] font-black leading-[1.02] sm:text-6xl lg:text-7xl xl:text-[5.2rem]">Local IT support.<br /><span className="text-electric">Business technology.</span><br />Security built in.</h1><p className="mt-7 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">VeritaGrid solves computer, Wi-Fi, printer, account, and business technology problems. Professional website creation and ongoing technology care are available when the need goes beyond a quick fix.</p><div className="mt-9 flex flex-col gap-3 sm:flex-row"><ButtonLink to="/contact" navigate={navigate}>Get tech help <ArrowRight size={18} /></ButtonLink><ButtonLink to="/services" navigate={navigate} secondary>Explore services</ButtonLink><ButtonLink to="/websites" navigate={navigate} secondary>Build a website</ButtonLink></div></div>
+      </div>
+      <div className="absolute inset-x-0 bottom-0 border-t border-white/15 bg-ink/80 backdrop-blur-xl"><div className="section-shell grid grid-cols-2 divide-x divide-y divide-white/10 sm:grid-cols-4 sm:divide-y-0">{[['Computer help', Wrench], ['Wi-Fi & devices', Router], ['Business systems', BriefcaseBusiness], ['Websites', Globe2]].map(([label, ItemIcon]) => <div key={label} className="flex min-h-20 items-center gap-3 px-4 text-xs font-black uppercase text-slate-300 sm:px-5"><ItemIcon size={18} className="text-electric" />{label}</div>)}</div></div>
+    </section>
+    <section className="bg-cloud py-20 sm:py-28"><div className="section-shell"><div className="grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-end"><div><p className="eyebrow">Choose a starting point</p><h2 className="mt-4 font-display text-4xl font-black leading-tight sm:text-5xl">One local partner. Four ways to help.</h2></div><p className="max-w-2xl text-lg leading-8 text-steel">The problem might be a laptop, a business email account, an unreliable network, or a website that no longer reflects the organization. Start with what needs attention now.</p></div><div className="mt-12"><ServiceMatrix navigate={navigate} compact /></div></div></section>
+    <section className="bg-white py-20 sm:py-28"><div className="section-shell grid gap-12 lg:grid-cols-[1.05fr_.95fr] lg:items-center"><div><p className="eyebrow">Technology support, made useful</p><h2 className="mt-4 font-display text-4xl font-black leading-tight sm:text-5xl">Fix today’s problem. Strengthen what comes next.</h2><p className="mt-6 max-w-2xl text-lg leading-8 text-steel">Every engagement starts with a clear need. Once the immediate issue is stable, VeritaGrid can improve the surrounding setup with better documentation, safer accounts, dependable backups, and a plan that fits the environment.</p><div className="mt-8 flex flex-wrap gap-3"><ButtonLink to="/services" navigate={navigate}>View all services <ArrowRight size={18} /></ButtonLink><Link to="/about" navigate={navigate} className="focus-ring inline-flex items-center gap-2 rounded px-3 text-sm font-black text-ink hover:text-electric">Why VeritaGrid <ArrowUpRight size={16} /></Link></div></div><div className="border border-line bg-cloud p-2"><div className="bg-navy p-7 text-white sm:p-9"><div className="flex items-center justify-between border-b border-white/15 pb-5"><span className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-mint">Support standard</span><Headphones size={22} className="text-electric" /></div>{['Plain-language answers', 'Security-minded recommendations', 'Clear next steps and documentation', 'Local and remote support options'].map((point) => <div key={point} className="flex items-center gap-3 border-b border-white/10 py-5 text-sm font-bold"><Check size={18} className="text-electric" />{point}</div>)}</div></div></div></section>
+    <section className="bg-[#eaf2fb] py-16"><div className="section-shell grid gap-px border border-line bg-line md:grid-cols-3">{[['Homes & families', 'Responsive help for everyday technology without the runaround.', Laptop], ['Small businesses', 'Dependable support for the systems, people, and tools behind the work.', BriefcaseBusiness], ['Churches & nonprofits', 'Practical technology care for offices, programs, events, and livestreams.', Church]].map(([title, text, ItemIcon]) => <article key={title} className="bg-white p-7"><ItemIcon size={24} className="text-electric" /><h3 className="mt-6 font-display text-xl font-black">{title}</h3><p className="mt-3 text-sm leading-6 text-steel">{text}</p></article>)}</div></section>
+    <ConversionBand navigate={navigate} />
+  </>
+}
+
+function ServicesPage({ navigate }) {
+  return <><PageIntro eyebrow="IT support and technology services" title="Help for the technology you use every day." text="From urgent troubleshooting to long-term business support, VeritaGrid provides practical service with clear communication and security considered throughout." /><section className="bg-cloud py-20 sm:py-28"><div className="section-shell"><ServiceMatrix navigate={navigate} /><div className="mt-20"><p className="eyebrow">Popular support requests</p><h2 className="mt-4 max-w-3xl font-display text-4xl font-black sm:text-5xl">Concrete problems. Clear next steps.</h2><div className="mt-10 grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">{supportServices.map((service) => { const Icon = service.icon; return <article key={service.title} className="bg-white p-7"><Icon size={24} className="text-electric" /><h3 className="mt-6 font-display text-xl font-black">{service.title}</h3><p className="mt-3 text-sm leading-6 text-steel">{service.text}</p></article> })}</div></div></div></section><ConversionBand navigate={navigate} /></>
+}
+
+function BusinessPage({ navigate }) {
+  return <><PageIntro eyebrow="Small business technology" title="A dependable technology partner for a growing business." text="VeritaGrid supports the devices, cloud tools, networks, accounts, and everyday decisions that keep small teams productive." /><section className="bg-white py-20 sm:py-28"><div className="section-shell"><div className="grid gap-12 lg:grid-cols-[.8fr_1.2fr]"><div><p className="eyebrow">Built for smaller teams</p><h2 className="mt-4 font-display text-4xl font-black leading-tight">Professional support without an internal IT department.</h2><p className="mt-5 text-lg leading-8 text-steel">Support can begin with a single project, a recurring need, or a technology environment that has simply become difficult to manage.</p><div className="mt-8"><ButtonLink to="/contact" navigate={navigate}>Discuss business support <ArrowRight size={18} /></ButtonLink></div></div><div className="grid gap-px border border-line bg-line sm:grid-cols-2">{businessServices.map(([title, text], index) => <article key={title} className="bg-cloud p-7"><p className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-electric">Capability {index + 1}</p><h3 className="mt-5 font-display text-xl font-black">{title}</h3><p className="mt-3 text-sm leading-6 text-steel">{text}</p></article>)}</div></div></div></section><section className="bg-navy py-20 text-white"><div className="section-shell"><div className="max-w-3xl"><p className="eyebrow">Business technology care</p><h2 className="mt-4 font-display text-4xl font-black sm:text-5xl">From reactive fixes to a steadier operating environment.</h2><p className="mt-5 text-lg leading-8 text-slate-300">Ongoing support can combine remote assistance, scheduled maintenance, account administration, website care, documentation, and practical security reviews.</p></div><div className="mt-10 grid gap-px border border-white/15 bg-white/15 sm:grid-cols-3">{[['Support', 'Help when devices, software, or accounts interrupt the work.'], ['Maintain', 'Routine updates, documentation, backups, and website upkeep.'], ['Protect', 'MFA, safer account practices, email security, and risk-focused improvements.']].map(([title, text]) => <div key={title} className="bg-navy p-7"><h3 className="font-display text-xl font-black">{title}</h3><p className="mt-3 text-sm leading-6 text-slate-300">{text}</p></div>)}</div></div></section><ConversionBand navigate={navigate} title="Build a support relationship around the way the business actually works." /></>
+}
+
+function WebsitesPage({ navigate }) {
+  return <><PageIntro eyebrow="Website design and ongoing care" title="A professional website that earns trust before the first conversation." text="VeritaGrid creates modern websites for local businesses, churches, nonprofits, and independent professionals, then provides the technical support to keep them useful." /><section className="bg-white py-20 sm:py-28"><div className="section-shell"><div className="grid gap-10 lg:grid-cols-[.9fr_1.1fr] lg:items-end"><div><p className="eyebrow">Built around the next action</p><h2 className="mt-4 font-display text-4xl font-black leading-tight sm:text-5xl">Not decoration. A working part of the business.</h2></div><p className="text-lg leading-8 text-steel">The goal is a clear, credible site that helps people understand the service, trust the organization, and take the next useful step.</p></div><div className="mt-12 grid gap-px border border-line bg-line md:grid-cols-2">{websiteFeatures.map((feature) => { const Icon = feature.icon; return <article key={feature.title} className="bg-cloud p-7 sm:p-9"><Icon size={25} className="text-electric" /><h3 className="mt-6 font-display text-2xl font-black">{feature.title}</h3><p className="mt-3 text-base leading-7 text-steel">{feature.text}</p></article> })}</div></div></section><section className="bg-[#eaf2fb] py-20"><div className="section-shell grid gap-12 lg:grid-cols-[.8fr_1.2fr]"><div><p className="eyebrow">Website services</p><h2 className="mt-4 font-display text-4xl font-black">From first launch to ongoing care.</h2><p className="mt-5 text-lg leading-8 text-steel">Start with a new site, modernize an older one, or hand off maintenance that keeps being postponed.</p></div><div className="grid gap-3">{['New business websites', 'Website redesign and modernization', 'Landing pages and lead forms', 'Domain and professional email setup', 'Hosting, updates, and backups', 'Local search foundations and service pages'].map((item) => <div key={item} className="flex items-center justify-between border border-line bg-white px-5 py-4 text-sm font-black"><span className="flex items-center gap-3"><Check size={17} className="text-electric" />{item}</span><ArrowUpRight size={16} className="text-steel" /></div>)}</div></div></section><ConversionBand navigate={navigate} title="Have a website idea, an outdated site, or no site at all?" /></>
+}
+
+function AboutPage({ navigate }) {
+  const credentials = ['CompTIA A+', 'CompTIA Security+', 'Cybersecurity graduate background', 'Hands-on IT support', 'Clear technical documentation', 'Local service']
+  return <><PageIntro eyebrow="About VeritaGrid" title="Technical capability, translated into useful help." text="VeritaGrid was created to make dependable technology support more accessible to local homes, small businesses, churches, nonprofits, and community organizations." /><section className="bg-white py-20 sm:py-28"><div className="section-shell grid gap-12 lg:grid-cols-[1.1fr_.9fr] lg:items-start"><div><p className="eyebrow">Professional and approachable</p><h2 className="mt-4 font-display text-4xl font-black leading-tight sm:text-5xl">Technology should be understandable before it is impressive.</h2><p className="mt-6 text-lg leading-8 text-steel">Led by Neander Devil, VeritaGrid combines cybersecurity education, recognized technical certifications, and hands-on problem-solving experience. The work ranges from helping a family recover a difficult account to improving the systems behind a local organization.</p><p className="mt-5 text-lg leading-8 text-steel">The standard remains the same: listen carefully, explain clearly, solve responsibly, and leave the technology in a stronger state than it was found.</p><div className="mt-8"><ButtonLink to="/contact" navigate={navigate}>Start a conversation <ArrowRight size={18} /></ButtonLink></div></div><div className="border border-line bg-cloud p-6"><div className="flex items-center justify-between border-b border-line pb-5"><p className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-electric">Credentials and strengths</p><BadgeCheck size={22} className="text-electric" /></div>{credentials.map((item) => <div key={item} className="flex items-center gap-3 border-b border-line py-4 text-sm font-bold"><Check size={17} className="text-electric" />{item}</div>)}</div></div></section><ConversionBand navigate={navigate} /></>
+}
+
+function ContactPage() {
+  const [formStatus, setFormStatus] = useState({ type: 'idle', message: '' })
+  async function handleSubmit(event) {
+    event.preventDefault()
+    const form = event.currentTarget
+    setFormStatus({ type: 'loading', message: 'Sending your request...' })
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) })
+      const result = await response.json()
+      if (result.success) { form.reset(); setFormStatus({ type: 'success', message: 'Your request was sent. VeritaGrid will follow up soon.' }) }
+      else setFormStatus({ type: 'error', message: result.message || 'The request could not be sent. Please call or email VeritaGrid directly.' })
+    } catch { setFormStatus({ type: 'error', message: 'The request could not be sent. Please call or email VeritaGrid directly.' }) }
+  }
+  return <><PageIntro eyebrow="Request support" title="Start with what is happening." text="Describe the issue, project, or technology goal. VeritaGrid will help identify the most useful next step." /><section className="bg-cloud py-16 sm:py-24"><div className="section-shell grid gap-8 lg:grid-cols-[.72fr_1.28fr]"><aside className="border border-line bg-white p-6 sm:p-8"><p className="eyebrow">Direct contact</p><h2 className="mt-4 font-display text-3xl font-black">Prefer to call or email?</h2><div className="mt-8 grid gap-4"><a href={`tel:${contactInfo.phoneHref}`} className="focus-ring flex items-center gap-3 rounded border border-line p-4 text-sm font-bold hover:border-electric"><Phone size={20} className="text-electric" />{contactInfo.phoneDisplay}</a><a href={`mailto:${contactInfo.email}`} className="focus-ring flex items-center gap-3 break-all rounded border border-line p-4 text-sm font-bold hover:border-electric"><Mail size={20} className="shrink-0 text-electric" />{contactInfo.email}</a><a href={contactInfo.linkedin} target="_blank" rel="noreferrer" className="focus-ring flex items-center gap-3 rounded border border-line p-4 text-sm font-bold hover:border-electric"><Linkedin size={20} className="text-electric" />LinkedIn profile</a></div><div className="mt-8 border-l-2 border-mint pl-4"><p className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-steel">Service area</p><p className="mt-2 text-sm font-bold leading-6">Elmont and surrounding western Nassau and eastern Queens communities, with remote support available where appropriate.</p></div></aside><form onSubmit={handleSubmit} className="border border-line bg-white p-6 shadow-soft sm:p-8"><input type="hidden" name="access_key" value={web3FormsAccessKey} /><input type="hidden" name="subject" value="New service request from VeritaGrid website" /><input type="hidden" name="from_name" value={businessName} /><input type="checkbox" name="botcheck" className="hidden" tabIndex="-1" autoComplete="off" /><div className="grid gap-5 sm:grid-cols-2">{[['Name', 'name', 'text', 'name'], ['Email', 'email', 'email', 'email'], ['Phone', 'phone', 'tel', 'tel']].map(([label, name, type, autoComplete]) => <label key={name} className="grid gap-2 text-sm font-black">{label}<input className="focus-ring rounded border border-line bg-cloud px-4 py-3 font-normal" name={name} type={type} autoComplete={autoComplete} required={name !== 'phone'} /></label>)}<label className="grid gap-2 text-sm font-black">Service needed<select className="focus-ring rounded border border-line bg-cloud px-4 py-3 font-normal" name="service" defaultValue=""><option value="" disabled>Select a service</option>{contactOptions.map((option) => <option key={option}>{option}</option>)}</select></label><label className="grid gap-2 text-sm font-black sm:col-span-2">What is happening?<textarea className="focus-ring min-h-40 rounded border border-line bg-cloud px-4 py-3 font-normal" name="message" placeholder="Describe the problem, project, devices involved, and what a good outcome would look like." required /></label></div>{formStatus.message && <p role="status" className={`mt-5 border px-4 py-3 text-sm font-bold ${formStatus.type === 'success' ? 'border-emerald-200 bg-emerald-50 text-emerald-800' : formStatus.type === 'error' ? 'border-red-200 bg-red-50 text-red-800' : 'border-line bg-cloud text-steel'}`}>{formStatus.message}</p>}<button type="submit" disabled={formStatus.type === 'loading'} className="focus-ring mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded bg-electric px-5 py-3 text-sm font-black text-white transition hover:bg-blue-500 disabled:opacity-60 sm:w-auto">{formStatus.type === 'loading' ? 'Sending...' : 'Send support request'}<ArrowRight size={18} /></button></form></div></section></>
+}
+
+function Footer({ navigate }) {
+  return <footer className="border-t border-white/10 bg-ink py-12 text-white"><div className="section-shell"><div className="grid gap-10 border-b border-white/10 pb-10 md:grid-cols-[1.3fr_.7fr_.7fr]"><div><BrandLockup /><p className="mt-5 max-w-sm text-sm leading-6 text-slate-400">Local IT support, business technology, website services, and practical security for the places where technology has to work.</p></div><div><p className="font-mono text-[10px] font-bold uppercase tracking-[0.15em] text-slate-500">Solutions</p><div className="mt-4 grid gap-3 text-sm font-bold text-slate-300"><Link to="/services" navigate={navigate}>IT support</Link><Link to="/business-it" navigate={navigate}>Business IT</Link><Link to="/websites" navigate={navigate}>Websites</Link></div></div><div><p className="font-mono text-[10px] font-bold uppercase tracking-[0.15em] text-slate-500">Company</p><div className="mt-4 grid gap-3 text-sm font-bold text-slate-300"><Link to="/about" navigate={navigate}>About</Link><Link to="/contact" navigate={navigate}>Contact</Link><a href={`tel:${contactInfo.phoneHref}`}>{contactInfo.phoneDisplay}</a></div></div></div><div className="flex flex-col gap-3 pt-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between"><p>&copy; {new Date().getFullYear()} {businessName}.</p><p>IT support · Websites · Cybersecurity</p></div></div></footer>
 }
 
 function App() {
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [formStatus, setFormStatus] = useState({ type: 'idle', message: '' })
-
-  async function handleContactSubmit(event) {
-    event.preventDefault()
-    const form = event.currentTarget
-    const formData = new FormData(form)
-
-    setFormStatus({ type: 'loading', message: 'Sending your request...' })
-
-    try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: formData
-      })
-      const result = await response.json()
-
-      if (result.success) {
-        form.reset()
-        setFormStatus({
-          type: 'success',
-          message: 'Thanks. Your request was sent successfully.'
-        })
-        return
-      }
-
-      setFormStatus({
-        type: 'error',
-        message: result.message || 'Your request could not be sent. Please email VeritaGrid directly.'
-      })
-    } catch {
-      setFormStatus({
-        type: 'error',
-        message: 'Your request could not be sent. Please email VeritaGrid directly.'
-      })
-    }
-  }
-
-  return (
-    <div className="min-h-screen bg-cloud text-ink">
-      <header className="sticky top-0 z-50 border-b border-white/10 bg-navy/95 text-white backdrop-blur">
-        <nav className="section-shell flex h-[4.5rem] items-center justify-between">
-          <a href="#top" className="focus-ring flex items-center gap-3 rounded">
-            <span className="grid h-10 w-10 place-items-center rounded bg-electric font-display text-base font-black text-white shadow-[0_8px_22px_rgba(31,143,255,0.28)]">
-              SB
-            </span>
-            <span className="leading-tight">
-              <span className="block text-sm font-bold">{businessName}</span>
-              <span className="block text-[11px] uppercase tracking-[0.1em] text-slate-400">Technology, secured</span>
-            </span>
-          </a>
-
-          <div className="hidden items-center gap-6 lg:flex">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="focus-ring rounded text-sm font-medium text-slate-300 transition hover:text-white"
-              >
-                {item.label}
-              </a>
-            ))}
-            <a href="#contact" className="focus-ring inline-flex items-center gap-2 rounded border border-electric/60 px-4 py-2 text-sm font-bold text-white transition hover:bg-electric">
-              Start a conversation
-              <ArrowUpRight size={16} />
-            </a>
-          </div>
-
-          <button
-            type="button"
-            aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-            onClick={() => setMenuOpen((open) => !open)}
-            className="focus-ring grid h-10 w-10 place-items-center rounded border border-white/15 text-white lg:hidden"
-          >
-            {menuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </nav>
-
-        {menuOpen && (
-          <div className="border-t border-white/10 bg-navy px-5 py-4 lg:hidden">
-            <div className="mx-auto grid max-w-6xl gap-3">
-              {navItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setMenuOpen(false)}
-                  className="focus-ring rounded py-2 text-sm font-medium text-slate-100"
-                >
-                  {item.label}
-                </a>
-              ))}
-              <a href="#contact" onClick={() => setMenuOpen(false)} className="focus-ring mt-2 inline-flex items-center justify-center gap-2 rounded bg-electric px-4 py-3 text-sm font-bold text-white">
-                Start a conversation
-                <ArrowUpRight size={16} />
-              </a>
-            </div>
-          </div>
-        )}
-      </header>
-
-      <main id="top">
-        <section className="relative overflow-hidden bg-navy text-white">
-          <div className="section-shell relative grid min-h-[min(820px,calc(100vh-4.5rem))] items-center gap-12 py-16 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16 lg:py-20">
-            <div className="reveal-in max-w-2xl">
-              <p className="eyebrow">Cybersecurity + IT consulting</p>
-              <h1 className="mt-6 font-display text-5xl font-black leading-[0.98] sm:text-6xl lg:text-7xl">
-                Secure systems.<br />
-                <span className="text-electric">Clear decisions.</span><br />
-                Better operations.
-              </h1>
-              <p className="mt-7 max-w-xl text-lg leading-8 text-slate-300 sm:text-xl">
-                Practical technology support for homes, churches, nonprofits, and small businesses. VeritaGrid brings calm troubleshooting, stronger security, and a clearer path forward.
-              </p>
-              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <a
-                  href="#contact"
-                  className="focus-ring inline-flex items-center justify-center gap-2 rounded bg-electric px-5 py-3.5 text-sm font-bold text-white shadow-soft transition hover:bg-blue-400"
-                >
-                  Start a conversation
-                  <ArrowRight size={18} />
-                </a>
-                <a
-                  href="#services"
-                  className="focus-ring inline-flex items-center justify-center gap-2 rounded border border-white/20 px-5 py-3.5 text-sm font-bold text-white transition hover:border-white/40 hover:bg-white/10"
-                >
-                  Explore services
-                </a>
-              </div>
-              <div className="mt-10 flex flex-wrap gap-x-6 gap-y-3 border-t border-white/15 pt-5 text-xs font-bold uppercase tracking-[0.14em] text-slate-400">
-                <span className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> Local support</span>
-                <span className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-electric" /> Security-minded</span>
-                <span className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-white" /> Plain language</span>
-              </div>
-            </div>
-
-            <div className="reveal-in reveal-delay-2">
-              <HeroSignalPanel />
-            </div>
-          </div>
-          <div className="section-shell pb-8 lg:pb-10">
-            <div className="grid gap-px overflow-hidden rounded border border-white/15 bg-white/15 sm:grid-cols-3">
-              {[
-                ['For people', 'Support that respects the human side of technology'],
-                ['For organizations', 'Systems that stay understandable and dependable'],
-                ['For the long run', 'Security habits and documentation that compound']
-              ].map(([label, value]) => (
-                <div key={label} className="bg-navy/95 p-5">
-                  <p className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-electric">{label}</p>
-                  <p className="mt-2 text-sm font-bold leading-5 text-white">{value}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="clients" className="bg-white py-20 sm:py-28">
-          <div className="section-shell">
-            <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
-              <div>
-                <p className="eyebrow">Who we support</p>
-                <h2 className="mt-4 font-display text-4xl font-black leading-tight sm:text-5xl">
-                  Technology help built around real life.
-                </h2>
-              </div>
-              <p className="max-w-2xl text-lg leading-8 text-steel">
-                Different environments need different answers. The standard stays consistent: responsive service, thoughtful guidance, and security that makes sense.
-              </p>
-            </div>
-
-            <div className="mt-12 grid gap-4 lg:grid-cols-3">
-              {clientTypes.map((client) => {
-                const Icon = client.icon
-                return (
-                  <article key={client.title} className="card-lift group rounded border border-line bg-cloud p-7 shadow-sm">
-                    <div className="flex items-center justify-between gap-4">
-                      <div className="grid h-12 w-12 place-items-center rounded bg-navy text-white transition group-hover:bg-electric">
-                        <Icon size={24} />
-                      </div>
-                      <span className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-steel">{client.tag}</span>
-                    </div>
-                    <h3 className="mt-7 font-display text-2xl font-black">{client.title}</h3>
-                    <p className="mt-3 text-sm leading-6 text-steel">{client.text}</p>
-                    <a href="#contact" className="focus-ring mt-6 inline-flex items-center gap-2 rounded text-sm font-bold text-ink transition hover:text-electric">
-                      Discuss support
-                      <ArrowUpRight size={16} />
-                    </a>
-                  </article>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-
-        <section id="services" className="page-grid py-20 sm:py-28">
-          <div className="section-shell">
-            <div className="max-w-3xl">
-              <p className="eyebrow">Capabilities</p>
-              <h2 className="mt-4 font-display text-4xl font-black leading-tight sm:text-5xl">
-                Independent IT & Cybersecurity Support
-              </h2>
-              <p className="mt-5 max-w-2xl text-lg leading-8 text-steel">
-                From a device that will not cooperate to a business that needs a safer foundation, each engagement is shaped around the actual environment and the next useful step.
-              </p>
-            </div>
-
-            <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {services.map((service, index) => {
-                const Icon = service.icon
-                return (
-                  <article key={service.title} className="card-lift group relative rounded border border-line bg-white p-6 shadow-sm">
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="grid h-11 w-11 place-items-center rounded bg-blue-50 text-electric transition group-hover:bg-electric group-hover:text-white">
-                        <Icon size={22} />
-                      </div>
-                      <span className="font-mono text-[10px] font-bold text-slate-400">0{index + 1}</span>
-                    </div>
-                    <h3 className="mt-6 font-display text-lg font-black leading-snug">{service.title}</h3>
-                    <p className="mt-3 text-sm leading-6 text-steel">{service.text}</p>
-                  </article>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-
-        <section id="approach" className="bg-navy py-20 text-white sm:py-28">
-          <div className="section-shell">
-            <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:items-end">
-              <div>
-                <p className="eyebrow">Approach</p>
-                <h2 className="mt-4 font-display text-4xl font-black leading-tight sm:text-5xl">
-                  Calm, structured, and easy to follow.
-                </h2>
-              </div>
-              <p className="max-w-2xl text-lg leading-8 text-slate-300">
-                Technology support works best when the process is visible. Each engagement moves from context to action, with security considered at every turn.
-              </p>
-            </div>
-            <div className="mt-12 grid gap-px overflow-hidden rounded border border-white/15 bg-white/15 md:grid-cols-2 lg:grid-cols-4">
-              {processSteps.map((step, index) => {
-                const Icon = step.icon
-                return (
-                  <article key={step.title} className="bg-navy p-7 transition hover:bg-[#102849]">
-                    <div className="flex items-center justify-between">
-                      <Icon className="text-electric" size={26} />
-                      <span className="font-mono text-xs font-bold text-slate-500">0{index + 1}</span>
-                    </div>
-                    <h3 className="mt-8 font-display text-xl font-black">{step.title}</h3>
-                    <p className="mt-3 text-sm leading-6 text-slate-300">{step.text}</p>
-                  </article>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-
-        <section id="about" className="bg-white py-20 sm:py-28">
-          <div className="section-shell grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
-            <div className="rounded border border-line bg-cloud p-7 shadow-sm">
-              <div className="flex items-center justify-between gap-4">
-                <p className="eyebrow">Trust signals</p>
-                <BadgeCheck className="text-electric" size={22} />
-              </div>
-              <div className="mt-7 grid gap-3">
-                {trustPoints.map((point) => (
-                  <div key={point} className="flex items-center gap-3 rounded border border-line bg-white p-4">
-                    <CheckCircle2 className="shrink-0 text-electric" size={19} />
-                    <span className="text-sm font-bold">{point}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <p className="eyebrow">About VeritaGrid</p>
-              <h2 className="mt-4 max-w-3xl font-display text-4xl font-black leading-tight sm:text-5xl">
-                Technical capability, translated for people.
-              </h2>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-steel">
-                VeritaGrid IT Solutions provides practical cybersecurity and IT support for the places where technology has to work: homes, community organizations, churches, nonprofits, and local businesses.
-              </p>
-              <p className="mt-5 max-w-2xl text-lg leading-8 text-steel">
-                Led by Neander Devil, the practice combines CompTIA A+ and Security+ credentials, a cybersecurity graduate background, and hands-on experience solving real technical problems. The result is support that is professional enough for business and approachable enough for everyday technology.
-              </p>
-              <div className="mt-8 grid gap-4 sm:grid-cols-3">
-                {[
-                  ['01', 'Explain', 'Make the issue understandable'],
-                  ['02', 'Improve', 'Fix what is slowing things down'],
-                  ['03', 'Protect', 'Build stronger habits and settings']
-                ].map(([number, title, text]) => (
-                  <div key={number} className="border-t-2 border-ink pt-4">
-                    <p className="font-mono text-xs font-bold text-electric">{number}</p>
-                    <p className="mt-3 font-display text-lg font-black">{title}</p>
-                    <p className="mt-1 text-sm leading-5 text-steel">{text}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="contact" className="bg-cloud py-20 sm:py-28">
-          <div className="section-shell">
-            <div className="grid gap-12 rounded border border-line bg-white p-6 shadow-soft sm:p-8 lg:grid-cols-[0.78fr_1.22fr] lg:p-10">
-              <div>
-                <p className="eyebrow">Contact</p>
-                <h2 className="mt-4 font-display text-4xl font-black leading-tight sm:text-5xl">
-                  Start with the situation.
-                </h2>
-                <p className="mt-5 text-lg leading-8 text-steel">
-                  Share the issue, the environment, and the best way to reach you. The next step will be clear and practical.
-                </p>
-                <div className="mt-8 grid gap-4">
-                  <a href={`mailto:${contactInfo.email}`} className="focus-ring flex items-center gap-3 rounded text-steel transition hover:text-ink">
-                    <Mail size={20} className="text-electric" />
-                    {contactInfo.email}
-                  </a>
-                  <a href={`tel:${contactInfo.phoneHref}`} className="focus-ring flex items-center gap-3 rounded text-steel transition hover:text-ink">
-                    <Phone size={20} className="text-electric" />
-                    {contactInfo.phoneDisplay}
-                  </a>
-                  <a href={contactInfo.linkedin} target="_blank" rel="noreferrer" className="focus-ring flex items-center gap-3 rounded text-steel transition hover:text-ink">
-                    <Linkedin size={20} className="text-electric" />
-                    LinkedIn profile
-                  </a>
-                </div>
-                <div className="mt-10 border-l-2 border-electric pl-4">
-                  <p className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-electric">Typical first step</p>
-                  <p className="mt-2 text-sm font-bold leading-6 text-ink">A short conversation to understand the situation and identify the right kind of support.</p>
-                </div>
-              </div>
-
-              <form onSubmit={handleContactSubmit} className="rounded border border-line bg-cloud p-5 sm:p-6">
-                <input type="hidden" name="access_key" value={web3FormsAccessKey} />
-                <input type="hidden" name="subject" value="New support request from VeritaGrid IT Solutions website" />
-                <input type="hidden" name="from_name" value={businessName} />
-                <input type="checkbox" name="botcheck" className="hidden" tabIndex="-1" autoComplete="off" />
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <label className="grid gap-2 text-sm font-bold">
-                    Name
-                    <input className="focus-ring rounded border border-line bg-white px-4 py-3 font-normal text-ink" name="name" type="text" autoComplete="name" required />
-                  </label>
-                  <label className="grid gap-2 text-sm font-bold">
-                    Email
-                    <input className="focus-ring rounded border border-line bg-white px-4 py-3 font-normal text-ink" name="email" type="email" autoComplete="email" required />
-                  </label>
-                  <label className="grid gap-2 text-sm font-bold">
-                    Phone
-                    <input className="focus-ring rounded border border-line bg-white px-4 py-3 font-normal text-ink" name="phone" type="tel" autoComplete="tel" />
-                  </label>
-                  <label className="grid gap-2 text-sm font-bold">
-                    Service needed
-                    <select className="focus-ring rounded border border-line bg-white px-4 py-3 font-normal text-ink" name="service" defaultValue="">
-                      <option value="" disabled>
-                        Select a service
-                      </option>
-                      {contactOptions.map((option) => (
-                        <option key={option} value={option}>
-                          {option}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-                  <label className="grid gap-2 text-sm font-bold sm:col-span-2">
-                    Message
-                    <textarea
-                      className="focus-ring min-h-36 rounded border border-line bg-white px-4 py-3 font-normal text-ink"
-                      name="message"
-                      placeholder="What is happening, and what would a good outcome look like?"
-                      required
-                    />
-                  </label>
-                </div>
-                {formStatus.message && (
-                  <p
-                    className={`mt-4 rounded border px-4 py-3 text-sm font-bold ${
-                      formStatus.type === 'success'
-                        ? 'border-emerald-200 bg-emerald-50 text-emerald-800'
-                        : formStatus.type === 'error'
-                          ? 'border-red-200 bg-red-50 text-red-800'
-                          : 'border-line bg-white text-steel'
-                    }`}
-                    role="status"
-                  >
-                    {formStatus.message}
-                  </p>
-                )}
-                <button
-                  type="submit"
-                  disabled={formStatus.type === 'loading'}
-                  className="focus-ring mt-5 inline-flex w-full items-center justify-center gap-2 rounded bg-electric px-5 py-3.5 text-sm font-black text-white transition hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
-                >
-                  {formStatus.type === 'loading' ? 'Sending...' : 'Send request'}
-                  <ArrowRight size={18} />
-                </button>
-              </form>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <footer className="border-t border-line bg-white py-8">
-        <div className="section-shell flex flex-col gap-4 text-sm text-steel sm:flex-row sm:items-center sm:justify-between">
-          <p>&copy; {new Date().getFullYear()} {businessName}. Cybersecurity & IT Consulting.</p>
-          <p className="flex items-center gap-2">
-            <CloudCog size={17} className="text-electric" />
-            Practical technology support, explained clearly.
-          </p>
-        </div>
-      </footer>
-    </div>
-  )
+  const [page, setPage] = useState(() => normalizePath(window.location.pathname))
+  useEffect(() => { const onPopState = () => setPage(normalizePath(window.location.pathname)); window.addEventListener('popstate', onPopState); return () => window.removeEventListener('popstate', onPopState) }, [])
+  useEffect(() => { document.title = `${routes[page]} | VeritaGrid IT Solutions`; window.scrollTo({ top: 0, behavior: 'auto' }) }, [page])
+  function navigate(to) { const next = normalizePath(to); if (next !== page) window.history.pushState({}, '', next); setPage(next) }
+  const content = page === '/services' ? <ServicesPage navigate={navigate} /> : page === '/business-it' ? <BusinessPage navigate={navigate} /> : page === '/websites' ? <WebsitesPage navigate={navigate} /> : page === '/about' ? <AboutPage navigate={navigate} /> : page === '/contact' ? <ContactPage /> : <HomePage navigate={navigate} />
+  return <div className="min-h-screen bg-cloud text-ink"><Header page={page} navigate={navigate} /><main key={page} className="route-enter">{content}</main><Footer navigate={navigate} /></div>
 }
 
 export default App

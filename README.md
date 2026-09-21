@@ -21,3 +21,5 @@ npm run build
 - Brand colors and Tailwind theme: `tailwind.config.js`
 - Global CSS helpers: `src/index.css`
 - Hero visual: `public/operations-grid.png`
+- Business card source and preview: `design/business-card-front.svg`, `design/business-card-back.svg`, and `design/business-card-preview.html`
+- Business card PDF: `output/pdf/veritagrid-business-card.pdf`
