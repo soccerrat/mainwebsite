@@ -15,6 +15,16 @@ npm run dev
 npm run build
 ```
 
+The build also generates crawlable HTML documents for every public route.
+
+## Analytics and SEO
+
+- Enable Web Analytics for the project in the Vercel dashboard after deployment.
+- Optional GA4: add `VITE_GA_MEASUREMENT_ID` in Vercel using the value from `.env.example` as a guide.
+- Submit `https://veritagrid.com/sitemap.xml` in Google Search Console.
+- Route metadata and structured data live in `src/seo.js`.
+- Analytics events live in `src/analytics.js`.
+
 ## Easy edits
 
 - Main website content: `src/App.jsx`

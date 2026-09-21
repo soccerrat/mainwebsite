@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#07111f"/>
+  <g opacity=".18" stroke="#2b9cff" fill="none">
+    <path d="M620 0v630M760 0v630M900 0v630M1040 0v630M0 110h1200M0 250h1200M0 390h1200M0 530h1200"/>
+    <path d="m620 110 280 280 300-300M760 0l440 440M620 530 1040 110" stroke-width="2"/>
+  </g>
+  <g transform="translate(72 64) scale(1.15)">
+    <path d="M60 8 104 31v33c0 24-15 40-44 49C31 104 16 88 16 64V31L60 8Z" fill="none" stroke="#fff" stroke-width="9"/>
+    <path d="M60 8 104 31v33c0 24-15 40-44 49" fill="none" stroke="#2b9cff" stroke-width="9"/>
+    <path d="m37 55 20 20 30-34" fill="none" stroke="#fff" stroke-width="10"/><path d="m57 75 30-34" fill="none" stroke="#2b9cff" stroke-width="10"/>
+  </g>
+  <text x="225" y="122" fill="#fff" font-family="Arial, sans-serif" font-size="58" font-weight="700">Verita<tspan fill="#2b9cff">Grid</tspan></text>
+  <text x="76" y="298" fill="#fff" font-family="Arial, sans-serif" font-size="72" font-weight="700">Local IT support.</text>
+  <text x="76" y="382" fill="#2b9cff" font-family="Arial, sans-serif" font-size="72" font-weight="700">Business technology.</text>
+  <text x="76" y="466" fill="#fff" font-family="Arial, sans-serif" font-size="72" font-weight="700">Security built in.</text>
+  <text x="78" y="548" fill="#b8c6d8" font-family="Arial, sans-serif" font-size="28">IT support · Websites · Cybersecurity · Elmont, New York</text>
+</svg>
