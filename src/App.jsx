@@ -12,7 +12,7 @@ import { routeSeo, updateSeo } from './seo.js'
 const businessName = 'VeritaGrid IT Solutions'
 const web3FormsAccessKey = '02b17a67-ee5c-41b5-ba19-eb527dcd28cb'
 const contactInfo = {
-  email: 'williamcartwright427@gmail.com',
+  email: 'veritagridit@gmail.com',
   phoneDisplay: '(516) 725-6490',
   phoneHref: '+15167256490',
   linkedin: 'https://www.linkedin.com/in/neanderdevil/'

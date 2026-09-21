@@ -47,7 +47,7 @@ export function structuredDataFor(path) {
         alternateName: 'VeritaGrid',
         url: SITE_URL,
         logo: `${SITE_URL}/veritagrid-logo.svg`,
-        email: 'williamcartwright427@gmail.com',
+        email: 'veritagridit@gmail.com',
         telephone: '+1-516-725-6490',
         founder: {
           '@type': 'Person',
