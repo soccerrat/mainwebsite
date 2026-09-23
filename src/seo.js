@@ -22,6 +22,11 @@ export const routeSeo = {
     description: 'Modern website design, redesign, hosting guidance, maintenance, lead forms, and local SEO foundations for Long Island organizations.',
     service: 'Small business website design and maintenance'
   },
+  '/pricing': {
+    title: 'Affordable IT Support Pricing in Elmont | VeritaGrid',
+    description: 'View clear starting prices for computer help, Wi-Fi, printer setup, business IT, cybersecurity checkups, and website services in Elmont, NY.',
+    service: 'IT support and website service pricing'
+  },
   '/about': {
     title: 'About VeritaGrid | IT & Cybersecurity Expertise',
     description: 'Meet Neander Devil, founder of VeritaGrid, with bachelor’s and master’s degrees in cybersecurity plus CompTIA A+ and Security+ certifications.',

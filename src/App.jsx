@@ -20,7 +20,7 @@ const contactInfo = {
   phoneHref: '+15167256490',
   linkedin: 'https://www.linkedin.com/in/neanderdevil/'
 }
-const routes = { '/': 'Home', '/services': 'Services', '/business-it': 'Business IT', '/websites': 'Websites', '/about': 'About', '/contact': 'Contact', '/privacy': 'Privacy', '/terms': 'Terms' }
+const routes = { '/': 'Home', '/services': 'Services', '/business-it': 'Business IT', '/websites': 'Websites', '/pricing': 'Pricing', '/about': 'About', '/contact': 'Contact', '/privacy': 'Privacy', '/terms': 'Terms' }
 
 const serviceGroups = [
   { id: 'home', short: 'Home IT', title: 'Everyday technology, working properly again.', text: 'Hands-on help for the computers, connections, devices, and accounts your household depends on.', icon: Laptop, items: ['Computer troubleshooting', 'Printer and scanner help', 'Wi-Fi and router support', 'New device setup', 'Data transfer and backup', 'Account security'], action: 'Get home tech help' },
@@ -50,6 +50,56 @@ const websiteFeatures = [
   { icon: ShieldCheck, title: 'Maintained and protected', text: 'Hosting guidance, secure forms, backups, technical upkeep, and an ongoing support option after launch.' }
 ]
 const contactOptions = ['Computer repair or troubleshooting', 'Printer or device setup', 'Wi-Fi or network support', 'Small business IT support', 'Website design or redesign', 'Website maintenance', 'Cybersecurity or account protection', 'Custom PC or computer upgrade', 'Not sure yet']
+const pricingGroups = [
+  {
+    id: 'home', label: 'Home IT', icon: Laptop,
+    title: 'Everyday technology help at a straightforward rate.',
+    text: 'Common home and personal technology services use fixed starting prices. Parts, paid software, and unusually complex recovery work are quoted separately.',
+    services: [
+      ['Remote troubleshooting', 'Up to 45 minutes', '$39'],
+      ['Local on-site support', 'First hour', '$59'],
+      ['Additional labor', 'After the first hour', '$45/hr'],
+      ['Computer tune-up', 'Updates, cleanup, and optimization', '$49'],
+      ['Printer setup or troubleshooting', 'One printer or scanner', '$49'],
+      ['Virus and malware cleanup', 'Standard cleanup and security review', '$69'],
+      ['Wi-Fi or router setup', 'One router; hardware not included', '$69'],
+      ['New computer setup', 'Updates, accounts, and essential software', '$69'],
+      ['Data transfer or backup setup', 'Standard personal files', '$79'],
+      ['RAM or SSD installation', 'Labor; parts purchased separately', '$49'],
+      ['Custom PC assembly', 'Assembly and initial system setup', '$149']
+    ]
+  },
+  {
+    id: 'business', label: 'Business & security', icon: BriefcaseBusiness,
+    title: 'Affordable support for smaller teams and local organizations.',
+    text: 'Business work begins with a clear scope. Larger networks, migrations, recurring support, and projects involving multiple users receive a written estimate.',
+    services: [
+      ['Small-business IT support', 'Remote or scheduled on-site assistance', '$69/hr'],
+      ['Home cybersecurity checkup', 'Accounts, devices, router, and backup review', '$99'],
+      ['Small-business cybersecurity checkup', 'Up to five users', '$199'],
+      ['Microsoft 365 or Google Workspace help', 'Setup or troubleshooting', 'From $69'],
+      ['Business email setup', 'One domain and primary mailbox', 'From $79'],
+      ['Office Wi-Fi and network support', 'Assessment and configuration', 'From $99'],
+      ['Backup planning', 'Practical plan and setup guidance', 'From $99'],
+      ['Church livestream or AV support', 'Troubleshooting or setup session', 'From $79']
+    ]
+  },
+  {
+    id: 'websites', label: 'Websites', icon: Globe2,
+    title: 'Professional websites without agency-level overhead.',
+    text: 'Website starting prices assume client-supplied business information and timely feedback. Every project includes responsive design, basic search foundations, and a working contact path.',
+    services: [
+      ['One-page business website', 'Focused site for one clear offer', 'From $399'],
+      ['Business website', 'Up to five core pages', 'From $749'],
+      ['Website redesign', 'Visual and structural modernization', 'From $499'],
+      ['Landing page', 'One campaign or service', 'From $299'],
+      ['Website maintenance', 'Routine updates and basic care', 'From $39/mo'],
+      ['Domain and email setup', 'Configuration and launch support', 'From $79'],
+      ['Additional page', 'Within an active website project', 'From $75'],
+      ['Advanced functionality', 'Booking, payments, or custom integrations', 'Estimate']
+    ]
+  }
+]
 
 function normalizePath(path) {
   const clean = path.replace(/\/$/, '') || '/'
@@ -89,12 +139,12 @@ function Header({ page, navigate }) {
             <div className="flex items-center justify-between bg-electric px-5 py-3 text-sm font-bold text-white"><span>Not sure where to start?</span><Link to="/contact" navigate={navigate} onClick={closeAll} className="focus-ring inline-flex items-center gap-2 rounded">Describe the problem <ArrowRight size={16} /></Link></div>
           </div></div>}
         </div>
-        {[['/business-it', 'Business IT'], ['/websites', 'Websites'], ['/about', 'About']].map(([to, label]) => <Link key={to} to={to} navigate={navigate} className={`focus-ring rounded px-4 py-3 text-sm font-bold transition ${page === to ? 'text-white' : 'text-slate-300 hover:text-white'}`}>{label}</Link>)}
+        {[['/business-it', 'Business IT'], ['/websites', 'Websites'], ['/pricing', 'Pricing'], ['/about', 'About']].map(([to, label]) => <Link key={to} to={to} navigate={navigate} className={`focus-ring rounded px-3 py-3 text-sm font-bold transition ${page === to ? 'text-white' : 'text-slate-300 hover:text-white'}`}>{label}</Link>)}
         <Link to="/contact" navigate={navigate} className="focus-ring ml-3 inline-flex items-center gap-2 rounded bg-electric px-4 py-2.5 text-sm font-black text-white transition hover:bg-blue-400">Get support <ArrowUpRight size={16} /></Link>
       </div>
       <button type="button" onClick={() => setMobileOpen((open) => !open)} className="focus-ring grid h-11 w-11 place-items-center rounded border border-white/15 lg:hidden" aria-label={mobileOpen ? 'Close navigation' : 'Open navigation'}>{mobileOpen ? <X size={21} /> : <Menu size={21} />}</button>
     </nav>
-    {mobileOpen && <div className="border-t border-white/10 bg-ink lg:hidden"><div className="section-shell grid py-4">{[['/', 'Home'], ['/services', 'All services'], ['/business-it', 'Business IT'], ['/websites', 'Websites'], ['/about', 'About'], ['/contact', 'Contact']].map(([to, label]) => <Link key={to} to={to} navigate={navigate} onClick={closeAll} className="focus-ring flex items-center justify-between border-b border-white/10 py-4 text-sm font-bold text-white">{label}<ArrowRight size={16} className="text-electric" /></Link>)}</div></div>}
+    {mobileOpen && <div className="border-t border-white/10 bg-ink lg:hidden"><div className="section-shell grid py-4">{[['/', 'Home'], ['/services', 'All services'], ['/business-it', 'Business IT'], ['/websites', 'Websites'], ['/pricing', 'Pricing'], ['/about', 'About'], ['/contact', 'Contact']].map(([to, label]) => <Link key={to} to={to} navigate={navigate} onClick={closeAll} className="focus-ring flex items-center justify-between border-b border-white/10 py-4 text-sm font-bold text-white">{label}<ArrowRight size={16} className="text-electric" /></Link>)}</div></div>}
   </header>
 }
 
@@ -159,6 +209,18 @@ function WebsitesPage({ navigate }) {
   return <><PageIntro eyebrow="Website design and ongoing care" title="A professional website that earns trust before the first conversation." text="VeritaGrid creates modern websites for local businesses, churches, nonprofits, and independent professionals, then provides the technical support to keep them useful." /><section className="bg-white py-20 sm:py-28"><div className="section-shell"><div className="grid gap-10 lg:grid-cols-[.9fr_1.1fr] lg:items-end"><div><p className="eyebrow">Built around the next action</p><h2 className="mt-4 font-display text-4xl font-black leading-tight sm:text-5xl">Not decoration. A working part of the business.</h2></div><p className="text-lg leading-8 text-steel">The goal is a clear, credible site that helps people understand the service, trust the organization, and take the next useful step.</p></div><div className="mt-12 grid gap-px border border-line bg-line md:grid-cols-2">{websiteFeatures.map((feature) => { const Icon = feature.icon; return <article key={feature.title} className="bg-cloud p-7 sm:p-9"><Icon size={25} className="text-electric" /><h3 className="mt-6 font-display text-2xl font-black">{feature.title}</h3><p className="mt-3 text-base leading-7 text-steel">{feature.text}</p></article> })}</div></div></section><section className="bg-[#eaf2fb] py-20"><div className="section-shell grid gap-12 lg:grid-cols-[.8fr_1.2fr]"><div><p className="eyebrow">Website services</p><h2 className="mt-4 font-display text-4xl font-black">From first launch to ongoing care.</h2><p className="mt-5 text-lg leading-8 text-steel">Start with a new site, modernize an older one, or hand off maintenance that keeps being postponed.</p></div><div className="grid gap-3">{['New business websites', 'Website redesign and modernization', 'Landing pages and lead forms', 'Domain and professional email setup', 'Hosting, updates, and backups', 'Local search foundations and service pages'].map((item) => <div key={item} className="flex items-center justify-between border border-line bg-white px-5 py-4 text-sm font-black"><span className="flex items-center gap-3"><Check size={17} className="text-electric" />{item}</span><ArrowUpRight size={16} className="text-steel" /></div>)}</div></div></section><ConversionBand navigate={navigate} title="Have a website idea, an outdated site, or no site at all?" /></>
 }
 
+function PricingPage({ navigate }) {
+  const [active, setActive] = useState('home')
+  const selected = pricingGroups.find((group) => group.id === active)
+  const SelectedIcon = selected.icon
+  return <><PageIntro eyebrow="Straightforward local pricing" title="Clear starting prices. No surprise charges." text="Common services use published starting prices. When the work depends on the condition, scale, parts, or complexity, VeritaGrid provides an estimate before paid work begins." /><section className="bg-cloud py-16 sm:py-24"><div className="section-shell"><div className="border border-line bg-white shadow-soft"><div role="tablist" aria-label="Pricing categories" className="grid bg-line md:grid-cols-3">{pricingGroups.map((group) => { const Icon = group.icon; const current = active === group.id; return <button key={group.id} type="button" role="tab" aria-selected={current} onClick={() => setActive(group.id)} className={`focus-ring flex min-h-16 items-center justify-center gap-3 border-b border-line px-4 py-4 text-sm font-black transition md:border-b-0 md:border-r ${current ? 'bg-navy text-white' : 'bg-white text-steel hover:bg-cloud hover:text-ink'}`}><Icon size={18} className={current ? 'text-electric' : ''} />{group.label}</button> })}</div><div className="grid lg:grid-cols-[.72fr_1.28fr]"><aside className="bg-navy p-7 text-white sm:p-10"><div className="grid h-12 w-12 place-items-center rounded bg-electric/15 text-electric"><SelectedIcon size={24} /></div><p className="mt-8 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-mint">{selected.label} pricing</p><h2 className="mt-4 font-display text-3xl font-black leading-tight">{selected.title}</h2><p className="mt-5 text-sm leading-7 text-slate-300">{selected.text}</p><div className="mt-8 border-t border-white/15 pt-7"><ButtonLink to="/contact" navigate={navigate}>Request an estimate <ArrowRight size={17} /></ButtonLink></div></aside><div className="divide-y divide-line">{selected.services.map(([name, detail, price]) => <div key={name} className="grid gap-3 px-6 py-5 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:px-8"><div><h3 className="text-sm font-black text-ink">{name}</h3><p className="mt-1 text-xs leading-5 text-steel">{detail}</p></div><p className="font-mono text-base font-bold text-electric sm:text-right">{price}</p></div>)}</div></div></div><div className="mt-14 grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">{[
+    ['Parts & software', 'Hardware, replacement parts, licenses, subscriptions, and paid software are separate unless included in writing.'],
+    ['Travel', 'Published on-site pricing covers Elmont and nearby communities. Longer travel is quoted before booking.'],
+    ['Website scope', 'Website prices include two revision rounds. Content-heavy, e-commerce, booking, and custom work are estimated separately.'],
+    ['Approval first', 'A changed scope or newly discovered issue is discussed before additional paid work continues.']
+  ].map(([title, text]) => <article key={title} className="bg-white p-6"><Check size={19} className="text-electric" /><h3 className="mt-5 text-sm font-black">{title}</h3><p className="mt-2 text-xs leading-6 text-steel">{text}</p></article>)}</div><div className="mt-12 grid gap-8 border-y border-line py-10 lg:grid-cols-[1fr_auto] lg:items-center"><div><p className="eyebrow">Before anything begins</p><h2 className="mt-3 font-display text-3xl font-black">Know the likely cost and the next step.</h2><p className="mt-3 max-w-2xl text-sm leading-7 text-steel">A brief phone consultation is free. Complex repairs, device parts, multi-user business work, and custom websites receive a written estimate based on the actual scope.</p></div><ButtonLink to="/contact" navigate={navigate}>Describe what you need <ArrowRight size={17} /></ButtonLink></div></div></section></>
+}
+
 function AboutPage({ navigate }) {
   const credentials = ['Bachelor’s degree in Cybersecurity', 'Master’s degree in Cybersecurity', 'CompTIA A+', 'CompTIA Security+', 'Hands-on IT support', 'Clear technical documentation', 'Local service']
   return <><PageIntro eyebrow="About VeritaGrid" title="Technical capability, translated into useful help." text="VeritaGrid was created to make dependable technology support more accessible to local homes, small businesses, churches, nonprofits, and community organizations." /><section className="bg-white py-20 sm:py-28"><div className="section-shell grid gap-12 lg:grid-cols-[1.1fr_.9fr] lg:items-start"><div><p className="eyebrow">Professional and approachable</p><h2 className="mt-4 font-display text-4xl font-black leading-tight sm:text-5xl">Technology should be understandable before it is impressive.</h2><p className="mt-6 text-lg leading-8 text-steel">Led by Neander Devil, VeritaGrid combines bachelor’s and master’s degrees in cybersecurity, CompTIA A+ and Security+ certifications, and hands-on problem-solving experience. The work ranges from helping a family recover a difficult account to improving the systems behind a local organization.</p><p className="mt-5 text-lg leading-8 text-steel">The standard remains the same: listen carefully, explain clearly, solve responsibly, and leave the technology in a stronger state than it was found.</p><div className="mt-8"><ButtonLink to="/contact" navigate={navigate}>Start a conversation <ArrowRight size={18} /></ButtonLink></div></div><div className="border border-line bg-cloud p-6"><div className="flex items-center justify-between border-b border-line pb-5"><p className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-electric">Credentials and strengths</p><BadgeCheck size={22} className="text-electric" /></div>{credentials.map((item) => <div key={item} className="flex items-center gap-3 border-b border-line py-4 text-sm font-bold"><Check size={17} className="text-electric" />{item}</div>)}</div></div></section><ConversionBand navigate={navigate} /></>
@@ -217,7 +279,7 @@ function PrivacyChoices({ open, navigate, onChoose }) {
 }
 
 function Footer({ navigate, onPrivacyOpen }) {
-  return <footer className="border-t border-white/10 bg-ink py-12 text-white"><div className="section-shell"><div className="grid gap-10 border-b border-white/10 pb-10 md:grid-cols-[1.25fr_.65fr_.8fr_.75fr]"><div><BrandLockup /><p className="mt-5 max-w-sm text-sm leading-6 text-slate-400">Local IT support, business technology, website services, and practical security for the places where technology has to work.</p><p className="mt-4 max-w-sm border-l-2 border-mint pl-3 text-xs leading-5 text-slate-500">Service-area business based in Elmont, New York. In-person support by appointment; remote support available where appropriate.</p></div><div><p className="font-mono text-[10px] font-bold uppercase tracking-[0.15em] text-slate-500">Solutions</p><div className="mt-4 grid gap-3 text-sm font-bold text-slate-300"><Link to="/services" navigate={navigate}>IT support</Link><Link to="/business-it" navigate={navigate}>Business IT</Link><Link to="/websites" navigate={navigate}>Websites</Link></div></div><div><p className="font-mono text-[10px] font-bold uppercase tracking-[0.15em] text-slate-500">Company</p><div className="mt-4 grid gap-3 text-sm font-bold text-slate-300"><Link to="/about" navigate={navigate}>About</Link><Link to="/contact" navigate={navigate}>Contact</Link><a className="break-all" href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a><a href={`tel:${contactInfo.phoneHref}`}>{contactInfo.phoneDisplay}</a></div></div><div><p className="font-mono text-[10px] font-bold uppercase tracking-[0.15em] text-slate-500">Trust</p><div className="mt-4 grid justify-items-start gap-3 text-sm font-bold text-slate-300"><Link to="/privacy" navigate={navigate}>Privacy policy</Link><Link to="/terms" navigate={navigate}>Terms of service</Link><button type="button" onClick={onPrivacyOpen} className="focus-ring rounded text-left hover:text-white">Privacy choices</button></div></div></div><div className="flex flex-col gap-3 pt-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between"><p>&copy; {new Date().getFullYear()} {businessName}.</p><p>IT support · Websites · Cybersecurity</p></div></div></footer>
+  return <footer className="border-t border-white/10 bg-ink py-12 text-white"><div className="section-shell"><div className="grid gap-10 border-b border-white/10 pb-10 md:grid-cols-[1.25fr_.65fr_.8fr_.75fr]"><div><BrandLockup /><p className="mt-5 max-w-sm text-sm leading-6 text-slate-400">Local IT support, business technology, website services, and practical security for the places where technology has to work.</p><p className="mt-4 max-w-sm border-l-2 border-mint pl-3 text-xs leading-5 text-slate-500">Service-area business based in Elmont, New York. In-person support by appointment; remote support available where appropriate.</p></div><div><p className="font-mono text-[10px] font-bold uppercase tracking-[0.15em] text-slate-500">Solutions</p><div className="mt-4 grid gap-3 text-sm font-bold text-slate-300"><Link to="/services" navigate={navigate}>IT support</Link><Link to="/business-it" navigate={navigate}>Business IT</Link><Link to="/websites" navigate={navigate}>Websites</Link><Link to="/pricing" navigate={navigate}>Pricing</Link></div></div><div><p className="font-mono text-[10px] font-bold uppercase tracking-[0.15em] text-slate-500">Company</p><div className="mt-4 grid gap-3 text-sm font-bold text-slate-300"><Link to="/about" navigate={navigate}>About</Link><Link to="/contact" navigate={navigate}>Contact</Link><a className="break-all" href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a><a href={`tel:${contactInfo.phoneHref}`}>{contactInfo.phoneDisplay}</a></div></div><div><p className="font-mono text-[10px] font-bold uppercase tracking-[0.15em] text-slate-500">Trust</p><div className="mt-4 grid justify-items-start gap-3 text-sm font-bold text-slate-300"><Link to="/privacy" navigate={navigate}>Privacy policy</Link><Link to="/terms" navigate={navigate}>Terms of service</Link><button type="button" onClick={onPrivacyOpen} className="focus-ring rounded text-left hover:text-white">Privacy choices</button></div></div></div><div className="flex flex-col gap-3 pt-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between"><p>&copy; {new Date().getFullYear()} {businessName}.</p><p>IT support · Websites · Cybersecurity</p></div></div></footer>
 }
 
 function App() {
@@ -228,7 +290,7 @@ function App() {
   useEffect(() => { updateSeo(page); trackPageView(page, routeSeo[page].title); window.scrollTo({ top: 0, behavior: 'auto' }) }, [page])
   function navigate(to) { const next = normalizePath(to); if (next !== page) window.history.pushState({}, '', next); setPage(next) }
   function choosePrivacy(consent) { setAnalyticsConsent(consent); if (consent === 'analytics') { initializeGoogleAnalytics(); trackPageView(page, routeSeo[page].title) } else disableGoogleAnalytics(); setPrivacyOpen(false) }
-  const content = page === '/services' ? <ServicesPage navigate={navigate} /> : page === '/business-it' ? <BusinessPage navigate={navigate} /> : page === '/websites' ? <WebsitesPage navigate={navigate} /> : page === '/about' ? <AboutPage navigate={navigate} /> : page === '/contact' ? <ContactPage navigate={navigate} /> : page === '/privacy' ? <LegalPage kind="privacy" navigate={navigate} /> : page === '/terms' ? <LegalPage kind="terms" navigate={navigate} /> : <HomePage navigate={navigate} />
+  const content = page === '/services' ? <ServicesPage navigate={navigate} /> : page === '/business-it' ? <BusinessPage navigate={navigate} /> : page === '/websites' ? <WebsitesPage navigate={navigate} /> : page === '/pricing' ? <PricingPage navigate={navigate} /> : page === '/about' ? <AboutPage navigate={navigate} /> : page === '/contact' ? <ContactPage navigate={navigate} /> : page === '/privacy' ? <LegalPage kind="privacy" navigate={navigate} /> : page === '/terms' ? <LegalPage kind="terms" navigate={navigate} /> : <HomePage navigate={navigate} />
   return <div className="min-h-screen bg-cloud text-ink"><Header page={page} navigate={navigate} /><main key={page} className="route-enter">{content}</main><Footer navigate={navigate} onPrivacyOpen={() => setPrivacyOpen(true)} /><PrivacyChoices open={privacyOpen} navigate={navigate} onChoose={choosePrivacy} /><Analytics /></div>
 }
 
