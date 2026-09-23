@@ -24,7 +24,7 @@ export const routeSeo = {
   },
   '/pricing': {
     title: 'Affordable IT Support Pricing in Elmont | VeritaGrid',
-    description: 'View clear starting prices for computer help, Wi-Fi, printer setup, business IT, cybersecurity checkups, and website services in Elmont, NY.',
+    description: 'View popular starting prices for computer help, Wi-Fi, printer support, business IT, cybersecurity checkups, and websites in Elmont, NY.',
     service: 'IT support and website service pricing'
   },
   '/about': {

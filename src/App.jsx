@@ -58,16 +58,13 @@ const pricingGroups = [
     services: [
       ['Remote troubleshooting', 'Up to 45 minutes', '$39'],
       ['Local on-site support', 'First hour', '$59'],
-      ['Additional labor', 'After the first hour', '$45/hr'],
       ['Computer tune-up', 'Updates, cleanup, and optimization', '$49'],
       ['Printer setup or troubleshooting', 'One printer or scanner', '$49'],
       ['Virus and malware cleanup', 'Standard cleanup and security review', '$69'],
       ['Wi-Fi or router setup', 'One router; hardware not included', '$69'],
-      ['New computer setup', 'Updates, accounts, and essential software', '$69'],
-      ['Data transfer or backup setup', 'Standard personal files', '$79'],
-      ['RAM or SSD installation', 'Labor; parts purchased separately', '$49'],
-      ['Custom PC assembly', 'Assembly and initial system setup', '$149']
-    ]
+      ['Custom PC assembly', 'Assembly and initial system setup', 'From $149']
+    ],
+    custom: 'New computer setup, data transfers, backup setup, RAM or SSD installation, upgrades, and repair work involving parts.'
   },
   {
     id: 'business', label: 'Business & security', icon: BriefcaseBusiness,
@@ -75,14 +72,11 @@ const pricingGroups = [
     text: 'Business work begins with a clear scope. Larger networks, migrations, recurring support, and projects involving multiple users receive a written estimate.',
     services: [
       ['Small-business IT support', 'Remote or scheduled on-site assistance', '$69/hr'],
-      ['Home cybersecurity checkup', 'Accounts, devices, router, and backup review', '$99'],
       ['Small-business cybersecurity checkup', 'Up to five users', '$199'],
-      ['Microsoft 365 or Google Workspace help', 'Setup or troubleshooting', 'From $69'],
-      ['Business email setup', 'One domain and primary mailbox', 'From $79'],
       ['Office Wi-Fi and network support', 'Assessment and configuration', 'From $99'],
-      ['Backup planning', 'Practical plan and setup guidance', 'From $99'],
       ['Church livestream or AV support', 'Troubleshooting or setup session', 'From $79']
-    ]
+    ],
+    custom: 'Microsoft 365, Google Workspace, business email, backup planning, larger networks, migrations, and recurring support.'
   },
   {
     id: 'websites', label: 'Websites', icon: Globe2,
@@ -91,13 +85,9 @@ const pricingGroups = [
     services: [
       ['One-page business website', 'Focused site for one clear offer', 'From $399'],
       ['Business website', 'Up to five core pages', 'From $749'],
-      ['Website redesign', 'Visual and structural modernization', 'From $499'],
-      ['Landing page', 'One campaign or service', 'From $299'],
-      ['Website maintenance', 'Routine updates and basic care', 'From $39/mo'],
-      ['Domain and email setup', 'Configuration and launch support', 'From $79'],
-      ['Additional page', 'Within an active website project', 'From $75'],
-      ['Advanced functionality', 'Booking, payments, or custom integrations', 'Estimate']
-    ]
+      ['Website maintenance', 'Routine updates and basic care', 'From $39/mo']
+    ],
+    custom: 'Website redesigns, landing pages, domain and email setup, additional pages, e-commerce, booking, payments, and custom integrations.'
   }
 ]
 
@@ -213,7 +203,7 @@ function PricingPage({ navigate }) {
   const [active, setActive] = useState('home')
   const selected = pricingGroups.find((group) => group.id === active)
   const SelectedIcon = selected.icon
-  return <><PageIntro eyebrow="Straightforward local pricing" title="Clear starting prices. No surprise charges." text="Common services use published starting prices. When the work depends on the condition, scale, parts, or complexity, VeritaGrid provides an estimate before paid work begins." /><section className="bg-cloud py-16 sm:py-24"><div className="section-shell"><div className="border border-line bg-white shadow-soft"><div role="tablist" aria-label="Pricing categories" className="grid bg-line md:grid-cols-3">{pricingGroups.map((group) => { const Icon = group.icon; const current = active === group.id; return <button key={group.id} type="button" role="tab" aria-selected={current} onClick={() => setActive(group.id)} className={`focus-ring flex min-h-16 items-center justify-center gap-3 border-b border-line px-4 py-4 text-sm font-black transition md:border-b-0 md:border-r ${current ? 'bg-navy text-white' : 'bg-white text-steel hover:bg-cloud hover:text-ink'}`}><Icon size={18} className={current ? 'text-electric' : ''} />{group.label}</button> })}</div><div className="grid lg:grid-cols-[.72fr_1.28fr]"><aside className="bg-navy p-7 text-white sm:p-10"><div className="grid h-12 w-12 place-items-center rounded bg-electric/15 text-electric"><SelectedIcon size={24} /></div><p className="mt-8 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-mint">{selected.label} pricing</p><h2 className="mt-4 font-display text-3xl font-black leading-tight">{selected.title}</h2><p className="mt-5 text-sm leading-7 text-slate-300">{selected.text}</p><div className="mt-8 border-t border-white/15 pt-7"><ButtonLink to="/contact" navigate={navigate}>Request an estimate <ArrowRight size={17} /></ButtonLink></div></aside><div className="divide-y divide-line">{selected.services.map(([name, detail, price]) => <div key={name} className="grid gap-3 px-6 py-5 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:px-8"><div><h3 className="text-sm font-black text-ink">{name}</h3><p className="mt-1 text-xs leading-5 text-steel">{detail}</p></div><p className="font-mono text-base font-bold text-electric sm:text-right">{price}</p></div>)}</div></div></div><div className="mt-14 grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">{[
+  return <><PageIntro eyebrow="Straightforward local pricing" title="Popular services and starting prices." text="See typical pricing for the work customers request most. Services that depend on condition, scale, parts, or complexity receive a clear estimate before paid work begins." /><section className="bg-cloud py-16 sm:py-24"><div className="section-shell"><div className="border border-line bg-white shadow-soft"><div role="tablist" aria-label="Pricing categories" className="grid bg-line md:grid-cols-3">{pricingGroups.map((group) => { const Icon = group.icon; const current = active === group.id; return <button key={group.id} type="button" role="tab" aria-selected={current} onClick={() => setActive(group.id)} className={`focus-ring flex min-h-16 items-center justify-center gap-3 border-b border-line px-4 py-4 text-sm font-black transition md:border-b-0 md:border-r ${current ? 'bg-navy text-white' : 'bg-white text-steel hover:bg-cloud hover:text-ink'}`}><Icon size={18} className={current ? 'text-electric' : ''} />{group.label}</button> })}</div><div className="grid lg:grid-cols-[.72fr_1.28fr]"><aside className="bg-navy p-7 text-white sm:p-10"><div className="grid h-12 w-12 place-items-center rounded bg-electric/15 text-electric"><SelectedIcon size={24} /></div><p className="mt-8 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-mint">{selected.label} pricing</p><h2 className="mt-4 font-display text-3xl font-black leading-tight">{selected.title}</h2><p className="mt-5 text-sm leading-7 text-slate-300">{selected.text}</p><div className="mt-8 border-t border-white/15 pt-7"><ButtonLink to="/contact" navigate={navigate}>Request an estimate <ArrowRight size={17} /></ButtonLink></div></aside><div className="divide-y divide-line">{selected.services.map(([name, detail, price]) => <div key={name} className="grid gap-3 px-6 py-5 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:px-8"><div><h3 className="text-sm font-black text-ink">{name}</h3><p className="mt-1 text-xs leading-5 text-steel">{detail}</p></div><p className="font-mono text-base font-bold text-electric sm:text-right">{price}</p></div>)}<div className="bg-[#f2f7fc] px-6 py-6 sm:px-8"><p className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-electric">Also available by estimate</p><p className="mt-2 text-sm leading-6 text-steel">{selected.custom}</p></div></div></div></div><div className="mt-14 grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">{[
     ['Parts & software', 'Hardware, replacement parts, licenses, subscriptions, and paid software are separate unless included in writing.'],
     ['Travel', 'Published on-site pricing covers Elmont and nearby communities. Longer travel is quoted before booking.'],
     ['Website scope', 'Website prices include two revision rounds. Content-heavy, e-commerce, booking, and custom work are estimated separately.'],
