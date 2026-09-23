@@ -31,15 +31,23 @@ export const routeSeo = {
     title: 'Request Local IT Support | VeritaGrid Elmont, NY',
     description: 'Request local or remote support for computers, Wi-Fi, printers, business technology, websites, backups, and account security.',
     service: 'Technology support request'
+  },
+  '/privacy': {
+    title: 'Privacy Policy | VeritaGrid IT Solutions',
+    description: 'Learn how VeritaGrid handles contact requests, analytics choices, service communications, and website information.',
+    service: null
+  },
+  '/terms': {
+    title: 'Terms of Service | VeritaGrid IT Solutions',
+    description: 'Review the website and service terms for VeritaGrid IT support, cybersecurity consulting, and website services.',
+    service: null
   }
 }
 
 export function structuredDataFor(path) {
   const seo = routeSeo[path] || routeSeo['/']
   const url = `${SITE_URL}${path === '/' ? '' : path}`
-  return {
-    '@context': 'https://schema.org',
-    '@graph': [
+  const graph = [
       {
         '@type': 'Organization',
         '@id': `${SITE_URL}/#organization`,
@@ -79,7 +87,10 @@ export function structuredDataFor(path) {
         isPartOf: { '@id': `${SITE_URL}/#website` },
         about: { '@id': `${SITE_URL}/#organization` },
         inLanguage: 'en-US'
-      },
+      }
+    ]
+  if (seo.service) {
+    graph.push(
       {
         '@type': 'Service',
         '@id': `${url}/#service`,
@@ -91,7 +102,11 @@ export function structuredDataFor(path) {
           { '@type': 'AdministrativeArea', name: 'Nassau County' }
         ]
       }
-    ]
+    )
+  }
+  return {
+    '@context': 'https://schema.org',
+    '@graph': graph
   }
 }
 
