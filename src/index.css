@@ -36,6 +36,11 @@ body {
   @apply font-mono text-xs font-bold uppercase tracking-[0.18em] text-electric;
 }
 
+.on-dark .text-electric,
+.on-dark .eyebrow {
+  color: #4eaeff;
+}
+
 .focus-ring {
   @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-electric;
 }

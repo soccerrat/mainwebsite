@@ -1,4 +1,4 @@
-export const SITE_URL = 'https://veritagrid.com'
+export const SITE_URL = 'https://www.veritagrid.com'
 export const DEFAULT_IMAGE = `${SITE_URL}/og-image.png`
 
 export const routeSeo = {

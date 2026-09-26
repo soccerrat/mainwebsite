@@ -9,7 +9,7 @@ export default {
         steel: '#52637a',
         cloud: '#f5f7fb',
         line: '#dbe3ef',
-        electric: '#1f8fff',
+        electric: '#006dcc',
         mint: '#22d3a6'
       },
       fontFamily: {
